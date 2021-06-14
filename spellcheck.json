@@ -1,0 +1,5 @@
+{
+  "ignore": ["commitd", "github", "Rollup", "VSCode"],
+  "whitelistFiles": [],
+  "codeSpellCheck": ["**/*.ts", "**/*.tsx"]
+}

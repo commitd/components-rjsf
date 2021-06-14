@@ -1,0 +1,11 @@
+{
+  "extends": "rollpkg/configs/tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": "src",
+    "paths": {
+      "stitches.config": ["./utils/stitches.config"],
+      "test-utils": ["./utils/test-utils"]
+    }
+  },
+  "include": ["src"]
+}
