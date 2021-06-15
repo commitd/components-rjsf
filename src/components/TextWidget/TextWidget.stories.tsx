@@ -1,16 +1,16 @@
 import React, { ComponentProps } from 'react'
 import { Story, Meta } from '@storybook/react'
+import { TextWidget } from '.'
 import { JSForm } from '../'
 import { Type } from '@sinclair/typebox'
 import { action } from '@storybook/addon-actions'
-import { {{ name }} } from '.'
 
 export default {
-  title: 'Components/{{ name }}',
-  component: {{ name }},
+  title: 'Components/TextWidget',
+  component: TextWidget,
 } as Meta
 
-export const Default: Story<ComponentProps<typeof {{ name }}>> = ({
+export const Default: Story<ComponentProps<typeof JSForm>> = ({
   schema = Type.Object({
     name: Type.String({ name: 'Name', description: 'description' }),
   }),
@@ -19,4 +19,3 @@ export const Default: Story<ComponentProps<typeof {{ name }}>> = ({
 }) => {
   return <JSForm schema={schema} onSubmit={onSubmit} {...args} />
 }
-

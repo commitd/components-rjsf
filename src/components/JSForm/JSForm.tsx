@@ -1,6 +1,7 @@
 import React from 'react'
 import { withTheme, ThemeProps, utils } from '@rjsf/core'
 import { Box, Button } from '@committed/components'
+import { TextWidget } from '../TextWidget'
 
 const { getDefaultRegistry } = utils
 const { fields, widgets } = getDefaultRegistry()
@@ -16,7 +17,7 @@ const DefaultChildren = () => (
 const Theme: ThemeProps = {
   children: <DefaultChildren />,
   fields: { ...fields },
-  widgets: { ...widgets },
+  widgets: { ...widgets, TextWidget },
 }
 
 export const JSForm = withTheme(Theme)
