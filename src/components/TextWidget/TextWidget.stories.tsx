@@ -12,7 +12,7 @@ export default {
 
 export const Default: Story<ComponentProps<typeof JSForm>> = ({
   schema = Type.Object({
-    name: Type.String({ name: 'Name', description: 'description' }),
+    name: Type.String({ title: 'Name', description: 'description' }),
   }),
   onSubmit = action('submit'),
   ...args

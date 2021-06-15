@@ -4,6 +4,8 @@ import { Box, Button } from '@committed/components'
 import { TextWidget } from '../TextWidget'
 import { CheckboxWidget } from '../CheckboxWidget'
 import { CheckboxesWidget } from '../CheckboxesWidget'
+import { DateWidget } from '../DateWidget'
+import { DateTimeWidget } from '../DateTimeWidget'
 
 const { getDefaultRegistry } = utils
 const { fields, widgets } = getDefaultRegistry()
@@ -19,7 +21,14 @@ const DefaultChildren = () => (
 const Theme: ThemeProps = {
   children: <DefaultChildren />,
   fields: { ...fields },
-  widgets: { ...widgets, TextWidget, CheckboxWidget, CheckboxesWidget },
+  widgets: {
+    ...widgets,
+    CheckboxWidget,
+    CheckboxesWidget,
+    DateTimeWidget,
+    DateWidget,
+    TextWidget,
+  },
 }
 
 export const JSForm = withTheme(Theme)
