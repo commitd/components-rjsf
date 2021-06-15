@@ -1,15 +1,7 @@
 import React, { ChangeEvent, FC, FocusEvent } from 'react'
 import { Label, Checkbox, Flex } from '@committed/components'
 import { WidgetProps } from '@rjsf/core'
-
-interface Option {
-  label: string
-  value: string
-}
-
-function isOptions(enumOptions: unknown): enumOptions is Option[] {
-  return Array.isArray(enumOptions)
-}
+import { Option, isOptions } from '../../../utils'
 
 const selectValue = (value: string, selected: string[], all: string[]) => {
   const at = all.indexOf(value)
