@@ -11,9 +11,31 @@ This is Committed's design system extension for React JSON Schema Forms.
 
 ## Getting Started
 
+Install the library and peer-dependencies in your application
+
+<code>npm add @committed/components-rjsf@{version}</code>
+
+Pass the JSON Schema to the `JSForm` component and receive via the `onSubmit`.
+
+```
+import React from 'react'
+import { JSForm } from '@committed/components-rjsf'
+
+export const MyForm = () => {
+
+  const handleSubmit =(e) => {
+    // handle e.formData
+  }
+
+  return <JSForm schema={schema} onSubmit={handleSubmit}  />
+}
+
+```
+
+## Links
+
 Here are a few helpful links for getting started with Committed Components:
 
-- [Getting Started](/components-rjsf/?path=/story/getting-started--page) Install and setup for use in your React app.
 - [Components](https://github.com/commitd/components) parent project.
 - [RJSF](https://github.com/rjsf-team/react-jsonschema-form) Provides a theme for RJSF.
 - [Code](https://github.com/commitd/components-rjsf) See the source code on GitHub.

@@ -31,6 +31,7 @@
     "coverage": "npx live-server coverage/lcov-report",
     "size": "size-limit",
     "analyze": "size-limit --why",
+    "generate": "plop --plopfile ./generators/plopfile.js",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "format": "prettier --write 'src/**/{*.js,*.ts,*.tsx,*.json,*.md,*.mdx}' example/index.tsx",
@@ -115,6 +116,7 @@
   "devDependencies": {
     "@fontsource/dosis": "^4.3.0",
     "@fontsource/inter": "^4.3.0",
+    "@sinclair/typebox": "^0.16.7",
     "@size-limit/preset-small-lib": "^4.6.2",
     "@storybook/addon-docs": "^6.2.8",
     "@storybook/addon-essentials": "^6.2.8",
@@ -133,6 +135,7 @@
     "jest-sonar-reporter": "^2.0.0",
     "jest-stitches": "^1.0.4",
     "jest-watch-typeahead": "^0.6.3",
+    "plop": "^2.7.4",
     "pretty-quick": "^2.0.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
@@ -147,6 +150,7 @@
   "dependencies": {
     "@committed/components": "^5.0.0-beta.3",
     "@committed/hooks": "^0.4.0",
-    "@mdi/js": "^5.9.55"
+    "@mdi/js": "^5.9.55",
+    "@rjsf/core": "^2.5.1"
   }
 }

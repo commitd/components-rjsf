@@ -1,1 +1,1 @@
-// Index
+export * from './components'
