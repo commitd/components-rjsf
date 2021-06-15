@@ -1,8 +1,6 @@
 import React from 'react'
-import { renderLight, renderDark } from '../../utils/test-utils'
-import { Default } from './CheckboxesWidget.stories'
-import { CheckboxesWidget } from '.'
-
+import { renderLight, renderDark } from '../../../utils/test-utils'
+import { Default } from './CheckboxWidget.stories'
 
 it('renders light without error', () => {
   const { asFragment } = renderLight(<Default />)

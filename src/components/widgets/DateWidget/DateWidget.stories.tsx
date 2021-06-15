@@ -1,9 +1,9 @@
-import React, { ComponentProps } from 'react'
-import { Story, Meta } from '@storybook/react'
-import { JSForm } from '../'
 import { Type } from '@sinclair/typebox'
 import { action } from '@storybook/addon-actions'
+import { Meta, Story } from '@storybook/react'
+import React from 'react'
 import { DateWidget } from '.'
+import { JSForm } from '../../JSForm'
 
 export default {
   title: 'Components/DateWidget',

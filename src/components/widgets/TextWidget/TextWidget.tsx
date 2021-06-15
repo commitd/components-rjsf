@@ -51,11 +51,11 @@ export const TextWidget: FC<TextWidgetProps> = ({
       label={displayLabel ? label || schema.title : false}
       required={required}
       disabled={disabled}
-      readonly={readonly}
+      readOnly={readonly}
       type={inputType}
       // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
       value={value || value === 0 ? value : ''}
-      error={rawErrors.length > 0}
+      state={rawErrors.length > 0 ? 'invalid' : undefined}
       onChange={_onChange}
       onBlur={_onBlur}
       onFocus={_onFocus}

@@ -1,11 +1,7 @@
 import React from 'react'
 import { withTheme, ThemeProps, utils } from '@rjsf/core'
 import { Box, Button } from '@committed/components'
-import { TextWidget } from '../TextWidget'
-import { CheckboxWidget } from '../CheckboxWidget'
-import { CheckboxesWidget } from '../CheckboxesWidget'
-import { DateWidget } from '../DateWidget'
-import { DateTimeWidget } from '../DateTimeWidget'
+import { Widgets } from '../widgets'
 
 const { getDefaultRegistry } = utils
 const { fields, widgets } = getDefaultRegistry()
@@ -23,11 +19,7 @@ const Theme: ThemeProps = {
   fields: { ...fields },
   widgets: {
     ...widgets,
-    CheckboxWidget,
-    CheckboxesWidget,
-    DateTimeWidget,
-    DateWidget,
-    TextWidget,
+    ...Widgets,
   },
 }
 

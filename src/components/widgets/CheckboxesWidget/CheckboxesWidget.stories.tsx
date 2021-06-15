@@ -3,7 +3,7 @@ import { Meta, Story } from '@storybook/react'
 import { JSONSchema7 } from 'json-schema'
 import React from 'react'
 import { CheckboxesWidget } from '.'
-import { JSForm } from '../'
+import { JSForm } from '../../JSForm'
 
 export default {
   title: 'Components/CheckboxesWidget',
