@@ -7,7 +7,7 @@ import { CheckboxesWidget } from './CheckboxesWidget'
 import { DateWidget } from './DateWidget'
 import { DateTimeWidget } from './DateTimeWidget'
 import { EmailWidget } from './EmailWidget'
-// import { FileWidget } from './FileWidget'
+import { FileWidget } from './FileWidget'
 // import { HiddenWidget } from './HiddenWidget'
 // import { PasswordWidget } from './PasswordWidget'
 // import { RadioWidget } from './RadioWidget'
@@ -32,10 +32,10 @@ export const Widgets = {
   // AltDateTimeWidget,
   EmailWidget,
   // URLWidget,
-  //TextareaWidget,
+  // TextareaWidget,
   // HiddenWidget,
   // ColorWidget,
-  // FileWidget,
+  FileWidget,
   CheckboxWidget,
   CheckboxesWidget,
 }
