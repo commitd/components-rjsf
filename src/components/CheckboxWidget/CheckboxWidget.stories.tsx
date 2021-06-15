@@ -3,17 +3,16 @@ import { Story, Meta } from '@storybook/react'
 import { JSForm } from '../'
 import { Type } from '@sinclair/typebox'
 import { action } from '@storybook/addon-actions'
-import { {{ name }} } from '.'
+import { CheckboxWidget } from '.'
 
 export default {
-  title: 'Components/{{ name }}',
-  component: {{ name }},
+  title: 'Components/CheckboxWidget',
+  component: CheckboxWidget,
 } as Meta
 
 export const Default: Story = (args) => {
   const schema = Type.Object({
-    name: Type.String({ name: 'Name', description: 'description' }),
+    name: Type.Boolean({ name: 'Checkbox', description: 'description' }),
   })
   return <JSForm schema={schema} onSubmit={action('submit')} {...args} />
 }
-

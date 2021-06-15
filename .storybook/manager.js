@@ -1,5 +1,5 @@
-import { addons } from "@storybook/addons";
-import { committedDark, committedLight } from "./committed/theme.js";
+import { addons } from '@storybook/addons'
+import { committedDark, committedLight } from './committed/theme.js'
 
 addons.setConfig({
   darkMode: {
@@ -8,4 +8,4 @@ addons.setConfig({
   },
   theme: committedLight,
   showPanel: false,
-});
+})

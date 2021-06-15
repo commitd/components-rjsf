@@ -2,6 +2,8 @@ import React from 'react'
 import { withTheme, ThemeProps, utils } from '@rjsf/core'
 import { Box, Button } from '@committed/components'
 import { TextWidget } from '../TextWidget'
+import { CheckboxWidget } from '../CheckboxWidget'
+import { CheckboxesWidget } from '../CheckboxesWidget'
 
 const { getDefaultRegistry } = utils
 const { fields, widgets } = getDefaultRegistry()
@@ -17,7 +19,7 @@ const DefaultChildren = () => (
 const Theme: ThemeProps = {
   children: <DefaultChildren />,
   fields: { ...fields },
-  widgets: { ...widgets, TextWidget },
+  widgets: { ...widgets, TextWidget, CheckboxWidget, CheckboxesWidget },
 }
 
 export const JSForm = withTheme(Theme)
