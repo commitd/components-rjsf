@@ -8,7 +8,7 @@ import { EmailWidget } from './EmailWidget'
 import { FileWidget } from './FileWidget'
 import { PasswordWidget } from './PasswordWidget'
 import { RadioWidget } from './RadioWidget'
-// import { RangeWidget } from './RangeWidget'
+import { RangeWidget } from './RangeWidget'
 // import { SelectWidget } from './SelectWidget'
 // import { TextareaWidget } from './TextareaWidget'
 import { TextWidget } from './TextWidget'
@@ -26,7 +26,7 @@ export const Widgets = {
   FileWidget,
   PasswordWidget,
   RadioWidget,
-  // RangeWidget,
+  RangeWidget,
   // SelectWidget,
   TextWidget,
   // TextareaWidget,
