@@ -12,8 +12,8 @@ import { RangeWidget } from './RangeWidget'
 // import { SelectWidget } from './SelectWidget'
 // import { TextareaWidget } from './TextareaWidget'
 import { TextWidget } from './TextWidget'
-// import { URLWidget } from './URLWidget'
 // import { UpDownWidget } from './UpDownWidget'
+import { URLWidget } from './URLWidget'
 
 export const Widgets = {
   // BaseInput,
@@ -31,5 +31,5 @@ export const Widgets = {
   TextWidget,
   // TextareaWidget,
   // UpDownWidget,
-  // URLWidget,
+  URLWidget,
 }
