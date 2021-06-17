@@ -1,6 +1,6 @@
 import React from 'react'
 import { renderDark, renderLight } from '../../../utils/test-utils'
-import { Default } from './ColorWidget.stories'
+import { Default } from './TextareaWidget.stories'
 
 it('renders light without error', () => {
   const { asFragment } = renderLight(<Default />)

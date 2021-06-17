@@ -1,7 +1,7 @@
 // import { BaseInput } from './BaseInput'
 import { CheckboxWidget } from './CheckboxWidget'
 import { CheckboxesWidget } from './CheckboxesWidget'
-// import { ColorWidget } from './ColorWidget'
+import { ColorWidget } from './ColorWidget'
 import { DateWidget } from './DateWidget'
 import { DateTimeWidget } from './DateTimeWidget'
 import { EmailWidget } from './EmailWidget'
@@ -10,14 +10,14 @@ import { PasswordWidget } from './PasswordWidget'
 import { RadioWidget } from './RadioWidget'
 import { RangeWidget } from './RangeWidget'
 // import { SelectWidget } from './SelectWidget'
-// import { TextareaWidget } from './TextareaWidget'
+import { TextareaWidget } from './TextareaWidget'
 import { TextWidget } from './TextWidget'
-// import { UpDownWidget } from './UpDownWidget'
+import { UpDownWidget } from './UpDownWidget'
 import { URLWidget } from './URLWidget'
 
 export const Widgets = {
   // BaseInput,
-  // ColorWidget,
+  ColorWidget,
   CheckboxWidget,
   CheckboxesWidget,
   DateWidget,
@@ -29,7 +29,7 @@ export const Widgets = {
   RangeWidget,
   // SelectWidget,
   TextWidget,
-  // TextareaWidget,
-  // UpDownWidget,
+  TextareaWidget,
+  UpDownWidget,
   URLWidget,
 }

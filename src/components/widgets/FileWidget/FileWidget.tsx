@@ -105,7 +105,7 @@ export const FileWidget: FC<WidgetProps> = (props) => {
 
   return (
     <Column css={{ py: '$3', gap: '$2' }}>
-      <Button onClick={handleClick}>
+      <Button disabled={readonly || disabled} onClick={handleClick}>
         {multiple ? 'Choose files' : 'Choose file'}
       </Button>
       <input

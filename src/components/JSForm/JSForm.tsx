@@ -24,3 +24,4 @@ const Theme: ThemeProps = {
 }
 
 export const JSForm = withTheme(Theme)
+JSForm.displayName = 'JSForm'

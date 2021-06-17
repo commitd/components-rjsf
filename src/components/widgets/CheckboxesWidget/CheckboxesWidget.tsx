@@ -1,5 +1,5 @@
 import React, { ChangeEvent, FC, FocusEvent } from 'react'
-import { Label, Checkbox, Flex } from '@committed/components'
+import { Label, Checkbox, Flex, CheckedState } from '@committed/components'
 import { WidgetProps } from '@rjsf/core'
 import { Option, isOptions } from '../../../utils'
 
@@ -35,17 +35,15 @@ export const CheckboxesWidget: FC<WidgetProps> = ({
     throw new Error('Enum options is not an array')
   }
 
-  const _onChange =
-    (option: Option) =>
-    ({ target: { checked } }: ChangeEvent<HTMLInputElement>) => {
-      const all = enumOptions.map(({ value }) => value)
+  const _onChange = (option: Option) => (checked: CheckedState) => {
+    const all = enumOptions.map(({ value }) => value)
 
-      if (checked) {
-        onChange(selectValue(option.value, value, all))
-      } else {
-        onChange(deselectValue(option.value, value))
-      }
+    if (checked) {
+      onChange(selectValue(option.value, value, all))
+    } else {
+      onChange(deselectValue(option.value, value))
     }
+  }
 
   const _onBlur = ({ target: { value } }: FocusEvent<HTMLButtonElement>) =>
     onBlur(id, value)

@@ -1,4 +1,4 @@
-import { Checkbox } from '@committed/components'
+import { Checkbox, CheckedState } from '@committed/components'
 import { utils, WidgetProps } from '@rjsf/core'
 import React, { ChangeEvent, FC, FocusEvent } from 'react'
 const { schemaRequiresTrueValue } = utils
@@ -22,8 +22,7 @@ export const CheckboxWidget: FC<WidgetProps> = ({
   // "const" or "enum" keywords
   const required = schemaRequiresTrueValue(schema)
 
-  const _onChange = ({ target: { checked } }: ChangeEvent<HTMLInputElement>) =>
-    onChange(checked)
+  const _onChange = (checked: CheckedState) => onChange(checked)
 
   const _onBlur = ({ target: { value } }: FocusEvent<HTMLButtonElement>) =>
     onBlur(id, value)

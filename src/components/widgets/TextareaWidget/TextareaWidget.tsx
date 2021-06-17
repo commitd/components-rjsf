@@ -1,24 +1,21 @@
-import { Input } from '@committed/components'
+import { CSS, TextArea } from '@committed/components'
 import { utils, WidgetProps } from '@rjsf/core'
 import React, { ChangeEvent, ComponentProps, FC, FocusEvent } from 'react'
-const { getDisplayLabel, rangeSpec } = utils
+const { getDisplayLabel } = utils
 
-type InputProps = ComponentProps<typeof Input>
+type TextAreaProps = ComponentProps<typeof TextArea>
 
-export type TextWidgetProps = WidgetProps &
-  Pick<InputProps, Exclude<keyof InputProps, 'onBlur' | 'onFocus'>>
+export type TextareaWidgetProps = WidgetProps &
+  Pick<TextAreaProps, Exclude<keyof TextAreaProps, 'onBlur' | 'onFocus'>>
 
 function getInputType(baseType: string) {
   if (baseType === 'string') {
     return 'text'
   }
-  if (baseType === 'integer') {
-    return 'number'
-  }
   return baseType
 }
 
-export const TextWidget: FC<TextWidgetProps> = ({
+export const TextareaWidget: FC<TextareaWidgetProps> = ({
   id,
   placeholder,
   required,
@@ -40,7 +37,7 @@ export const TextWidget: FC<TextWidgetProps> = ({
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   formContext,
   ...textFieldProps
-}: TextWidgetProps) => {
+}: TextareaWidgetProps) => {
   const _onChange = ({ target: { value } }: ChangeEvent<HTMLInputElement>) =>
     onChange(value === '' ? options.emptyValue : value)
 
@@ -53,11 +50,20 @@ export const TextWidget: FC<TextWidgetProps> = ({
   const displayLabel = getDisplayLabel(schema, uiSchema)
   const inputType = getInputType(type || schema.type)
 
-  const rangeProps = inputType === 'number' ? { ...rangeSpec(schema) } : {}
+  const css: CSS = {
+    height: '$8',
+  }
+  const rows = options.rows
+  if (typeof rows === 'number' && rows > 2) {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+    css.height = `${rows * 24}px`
+  }
 
   return (
-    <Input
+    <TextArea
       id={id}
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+      css={css}
       placeholder={placeholder}
       label={displayLabel ? label || schema.title : false}
       required={required}
@@ -70,8 +76,7 @@ export const TextWidget: FC<TextWidgetProps> = ({
       onChange={_onChange}
       onBlur={_onBlur}
       onFocus={_onFocus}
-      {...(textFieldProps as InputProps)}
-      {...rangeProps}
+      {...(textFieldProps as TextAreaProps)}
     />
   )
 }

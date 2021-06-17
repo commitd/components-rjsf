@@ -146,7 +146,7 @@
     "typescript": "4.2.2"
   },
   "dependencies": {
-    "@committed/components": "^5.0.0-beta.3",
+    "@committed/components": "^5.0.0-beta.5",
     "@committed/hooks": "^0.4.0",
     "@mdi/js": "^5.9.55",
     "@rjsf/core": "^2.5.1"
