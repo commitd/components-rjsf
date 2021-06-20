@@ -2,6 +2,7 @@ import React from 'react'
 import { withTheme, ThemeProps, utils } from '@rjsf/core'
 import { Box, Button } from '@committed/components'
 import { Widgets } from '../widgets'
+import { Fields } from '../fields'
 
 const { getDefaultRegistry } = utils
 const { fields, widgets } = getDefaultRegistry()
@@ -16,7 +17,7 @@ const DefaultChildren = () => (
 
 const Theme: ThemeProps = {
   children: <DefaultChildren />,
-  fields: { ...fields },
+  fields: { ...fields, ...Fields },
   widgets: {
     ...widgets,
     ...Widgets,
