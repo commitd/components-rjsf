@@ -1,4 +1,3 @@
-// import { BaseInput } from './BaseInput'
 import { CheckboxWidget } from './CheckboxWidget'
 import { CheckboxesWidget } from './CheckboxesWidget'
 import { ColorWidget } from './ColorWidget'
@@ -9,7 +8,7 @@ import { FileWidget } from './FileWidget'
 import { PasswordWidget } from './PasswordWidget'
 import { RadioWidget } from './RadioWidget'
 import { RangeWidget } from './RangeWidget'
-// import { SelectWidget } from './SelectWidget'
+import { SelectWidget } from './SelectWidget'
 import { TextareaWidget } from './TextareaWidget'
 import { TextWidget } from './TextWidget'
 import { UpDownWidget } from './UpDownWidget'
@@ -27,7 +26,7 @@ export const Widgets = {
   PasswordWidget,
   RadioWidget,
   RangeWidget,
-  // SelectWidget,
+  SelectWidget,
   TextWidget,
   TextareaWidget,
   UpDownWidget,
