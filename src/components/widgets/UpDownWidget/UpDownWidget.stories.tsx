@@ -6,7 +6,7 @@ import { UpDownWidget } from '.'
 import { JSForm } from '../../JSForm'
 
 export default {
-  title: 'Components/UpDownWidget',
+  title: 'Widgets/UpDownWidget',
   component: UpDownWidget,
 } as Meta
 
