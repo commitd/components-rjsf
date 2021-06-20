@@ -6,7 +6,7 @@ import { FileWidget } from '.'
 import { JSForm } from '../../JSForm'
 
 export default {
-  title: 'Components/FileWidget',
+  title: 'Widgets/FileWidget',
   component: FileWidget,
 } as Meta
 

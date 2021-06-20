@@ -7,7 +7,7 @@ import { JSForm } from '../../JSForm'
 import { JSONSchema7 } from 'json-schema'
 
 export default {
-  title: 'Components/RangeWidget',
+  title: 'Widgets/RangeWidget',
   component: RangeWidget,
 } as Meta
 

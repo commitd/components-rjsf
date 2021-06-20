@@ -6,7 +6,7 @@ import { action } from '@storybook/addon-actions'
 import { DateTimeWidget } from '.'
 
 export default {
-  title: 'Components/DateTimeWidget',
+  title: 'Widgets/DateTimeWidget',
   component: DateTimeWidget,
 } as Meta
 

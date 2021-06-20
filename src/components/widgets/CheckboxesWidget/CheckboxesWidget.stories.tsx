@@ -6,7 +6,7 @@ import { CheckboxesWidget } from '.'
 import { JSForm } from '../../JSForm'
 
 export default {
-  title: 'Components/CheckboxesWidget',
+  title: 'Widgets/CheckboxesWidget',
   component: CheckboxesWidget,
 } as Meta
 

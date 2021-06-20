@@ -6,7 +6,7 @@ import { DateWidget } from '.'
 import { JSForm } from '../../JSForm'
 
 export default {
-  title: 'Components/DateWidget',
+  title: 'Widgets/DateWidget',
   component: DateWidget,
 } as Meta
 

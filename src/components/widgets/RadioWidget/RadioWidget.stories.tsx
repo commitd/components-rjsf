@@ -7,7 +7,7 @@ import { JSForm } from '../../JSForm'
 import { JSONSchema7 } from 'json-schema'
 
 export default {
-  title: 'Components/RadioWidget',
+  title: 'Widgets/RadioWidget',
   component: RadioWidget,
 } as Meta
 

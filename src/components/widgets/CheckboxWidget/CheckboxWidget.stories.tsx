@@ -6,7 +6,7 @@ import { action } from '@storybook/addon-actions'
 import { CheckboxWidget } from '.'
 
 export default {
-  title: 'Components/CheckboxWidget',
+  title: 'Widgets/CheckboxWidget',
   component: CheckboxWidget,
 } as Meta
 

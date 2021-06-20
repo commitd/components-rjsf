@@ -6,7 +6,7 @@ import { PasswordWidget } from '.'
 import { JSForm } from '../../JSForm'
 
 export default {
-  title: 'Components/PasswordWidget',
+  title: 'Widgets/PasswordWidget',
   component: PasswordWidget,
 } as Meta
 

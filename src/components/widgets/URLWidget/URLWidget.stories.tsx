@@ -6,7 +6,7 @@ import { URLWidget } from '.'
 import { JSForm } from '../../JSForm'
 
 export default {
-  title: 'Components/URLWidget',
+  title: 'Widgets/URLWidget',
   component: URLWidget,
 } as Meta
 

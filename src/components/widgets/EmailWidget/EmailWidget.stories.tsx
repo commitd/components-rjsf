@@ -6,7 +6,7 @@ import { EmailWidget } from '.'
 import { JSForm } from '../../JSForm'
 
 export default {
-  title: 'Components/EmailWidget',
+  title: 'Widgets/EmailWidget',
   component: EmailWidget,
 } as Meta
 

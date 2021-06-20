@@ -6,7 +6,7 @@ import { ColorWidget } from '.'
 import { JSForm } from '../../JSForm'
 
 export default {
-  title: 'Components/ColorWidget',
+  title: 'Widgets/ColorWidget',
   component: ColorWidget,
 } as Meta
 

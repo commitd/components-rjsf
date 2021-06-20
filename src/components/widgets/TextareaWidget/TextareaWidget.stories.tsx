@@ -6,7 +6,7 @@ import { TextareaWidget } from '.'
 import { JSForm } from '../../JSForm'
 
 export default {
-  title: 'Components/TextareaWidget',
+  title: 'Widgets/TextareaWidget',
   component: TextareaWidget,
 } as Meta
 
