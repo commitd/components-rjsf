@@ -20,5 +20,5 @@ export const Fields = {
   // SchemaField,
   // StringField,
   // TitleField,
-  // UnsupportedField,
+  UnsupportedField,
 }

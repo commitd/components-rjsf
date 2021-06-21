@@ -11,7 +11,20 @@ export default {
 } as Meta
 
 export const Default: Story = (args) => {
-  const schema: JSONSchema7 = {}
+  const schema: JSONSchema7 = {
+    title: 'A registration form',
+    description: 'A simple form example.',
+    type: 'object',
+    required: ['firstName', 'lastName'],
+    properties: {
+      firstName: {
+        // @ts-ignore
+        type: 'test_type',
+        title: 'First name',
+        default: 'Test',
+      },
+    },
+  }
 
   const uiSchema = {}
 
