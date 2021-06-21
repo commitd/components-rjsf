@@ -1,92 +1,68 @@
 import { Type } from '@sinclair/typebox'
-import { action } from '@storybook/addon-actions'
-import { Meta, Story } from '@storybook/react'
-import React from 'react'
+import { Meta } from '@storybook/react'
 import { UpDownWidget } from '.'
-import { JSForm } from '../../JSForm'
+import { DefaultStory } from '../../../utils/utils.stories'
 
 export default {
   title: 'Widgets/UpDownWidget',
   component: UpDownWidget,
 } as Meta
 
-export const Default: Story = (args) => {
-  const schema = Type.Object({
+export const Default = DefaultStory.bind({})
+Default.args = {
+  schema: Type.Object({
     number: Type.Number({
       title: 'Number',
       description: 'description',
     }),
-  })
-  const uiSchema = {
+  }),
+  uiSchema: {
     number: {
       'ui:widget': 'updown',
     },
-  }
-  return (
-    <JSForm
-      schema={schema}
-      uiSchema={uiSchema}
-      onSubmit={action('submit')}
-      showErrorList
-      {...args}
-    />
-  )
+  },
+  showErrorList: true,
 }
 
-export const WithBounds: Story = (args) => {
-  const schema = Type.Object({
+export const WithBounds = DefaultStory.bind({})
+WithBounds.args = {
+  schema: Type.Object({
     number: Type.Number({
       title: 'Number',
       description: 'description',
       minimum: 0,
       maximum: 10,
     }),
-  })
-  const uiSchema = {
+  }),
+  uiSchema: {
     number: {
       'ui:widget': 'updown',
     },
-  }
-  return (
-    <JSForm
-      schema={schema}
-      uiSchema={uiSchema}
-      onSubmit={action('submit')}
-      showErrorList
-      {...args}
-    />
-  )
+  },
 }
 
-export const Integer: Story = (args) => {
-  const schema = Type.Object({
+export const Integer = DefaultStory.bind({})
+Integer.args = {
+  schema: Type.Object({
     integer: Type.Integer({
       title: 'Number',
       description: 'description',
     }),
-  })
-  const uiSchema = {
+  }),
+  uiSchema: {
     integer: {
       'ui:widget': 'updown',
     },
-  }
-  return (
-    <JSForm
-      schema={schema}
-      uiSchema={uiSchema}
-      onSubmit={action('submit')}
-      showErrorList
-      {...args}
-    />
-  )
+  },
 }
 
 /**
  * Not clear to me why the normal input for number and integer wouldn't work this way too.
  * So made this work without the need to specify the uiSchema.
  */
-export const WithoutUISchema: Story = (args) => {
-  const schema = Type.Object({
+export const WithoutUISchema = DefaultStory.bind({})
+WithoutUISchema.args = {
+  schema: Type.Object({
     integer: Type.Integer({
       title: 'Number',
       description: 'description',
@@ -97,13 +73,5 @@ export const WithoutUISchema: Story = (args) => {
       title: 'Number',
       description: 'description',
     }),
-  })
-  return (
-    <JSForm
-      schema={schema}
-      onSubmit={action('submit')}
-      showErrorList
-      {...args}
-    />
-  )
+  }),
 }

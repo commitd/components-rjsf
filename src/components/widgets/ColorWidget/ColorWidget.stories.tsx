@@ -1,22 +1,20 @@
 import { Type } from '@sinclair/typebox'
-import { action } from '@storybook/addon-actions'
-import { Meta, Story } from '@storybook/react'
-import React from 'react'
+import { Meta } from '@storybook/react'
 import { ColorWidget } from '.'
-import { JSForm } from '../../JSForm'
+import { DefaultStory } from '../../../utils/utils.stories'
 
 export default {
   title: 'Widgets/ColorWidget',
   component: ColorWidget,
 } as Meta
 
-export const Default: Story = (args) => {
-  const schema = Type.Object({
+export const Default = DefaultStory.bind({})
+Default.args = {
+  schema: Type.Object({
     color: Type.String({
       title: 'Color',
       description: 'description',
       format: 'color',
     }),
-  })
-  return <JSForm schema={schema} onSubmit={action('submit')} {...args} />
+  }),
 }

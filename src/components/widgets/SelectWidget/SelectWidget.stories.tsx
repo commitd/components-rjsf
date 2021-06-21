@@ -1,18 +1,15 @@
-import { Type } from '@sinclair/typebox'
-import { action } from '@storybook/addon-actions'
-import { Meta, Story } from '@storybook/react'
-import React from 'react'
+import { Meta } from '@storybook/react'
 import { SelectWidget } from '.'
-import { JSForm } from '../../JSForm'
-import { JSONSchema7 } from 'json-schema'
+import { DefaultStory } from '../../../utils/utils.stories'
 
 export default {
   title: 'Widgets/SelectWidget',
   component: SelectWidget,
 } as Meta
 
-export const Default: Story = (args) => {
-  const schema: JSONSchema7 = {
+export const Default = DefaultStory.bind({})
+Default.args = {
+  schema: {
     type: 'object',
     properties: {
       browser: {
@@ -22,12 +19,12 @@ export const Default: Story = (args) => {
         enum: ['Firefox', 'Chrome', 'Opera', 'Vivaldi', 'Safari'],
       },
     },
-  }
-  return <JSForm schema={schema} onSubmit={action('submit')} {...args} />
+  },
 }
 
-export const WithTitle: Story = (args) => {
-  const schema: JSONSchema7 = {
+export const WithTitle = DefaultStory.bind({})
+WithTitle.args = {
+  schema: {
     title: 'Browsers',
     description: 'A text field with example values.',
     type: 'object',
@@ -39,6 +36,5 @@ export const WithTitle: Story = (args) => {
       },
     },
     required: ['browser'],
-  }
-  return <JSForm schema={schema} onSubmit={action('submit')} {...args} />
+  },
 }

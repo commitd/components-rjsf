@@ -1,17 +1,15 @@
-import { action } from '@storybook/addon-actions'
-import { Meta, Story } from '@storybook/react'
-import { JSONSchema7 } from 'json-schema'
-import React from 'react'
+import { Meta } from '@storybook/react'
 import { CheckboxesWidget } from '.'
-import { JSForm } from '../../JSForm'
+import { DefaultStory } from '../../../utils/utils.stories'
 
 export default {
   title: 'Widgets/CheckboxesWidget',
   component: CheckboxesWidget,
 } as Meta
 
-export const Default: Story = (args) => {
-  const schema: JSONSchema7 = {
+export const Default = DefaultStory.bind({})
+Default.args = {
+  schema: {
     type: 'array',
     title: 'A multiple-choice list',
     items: {
@@ -19,23 +17,15 @@ export const Default: Story = (args) => {
       enum: ['foo', 'bar', 'fuzz', 'qux'],
     },
     uniqueItems: true,
-  }
-
-  const uiSchema = {
+  },
+  uiSchema: {
     'ui:widget': 'checkboxes',
-  }
-
-  return (
-    <JSForm
-      schema={schema}
-      uiSchema={uiSchema}
-      onSubmit={action('submit')}
-      {...args}
-    />
-  )
+  },
 }
-export const Inline: Story = (args) => {
-  const schema: JSONSchema7 = {
+
+export const Inline = DefaultStory.bind({})
+Inline.args = {
+  schema: {
     type: 'array',
     title: 'A multiple-choice list',
     items: {
@@ -43,21 +33,11 @@ export const Inline: Story = (args) => {
       enum: ['foo', 'bar', 'fuzz', 'qux'],
     },
     uniqueItems: true,
-  }
-
-  const uiSchema = {
+  },
+  uiSchema: {
     'ui:widget': 'checkboxes',
     'ui:options': {
       inline: true,
     },
-  }
-
-  return (
-    <JSForm
-      schema={schema}
-      uiSchema={uiSchema}
-      onSubmit={action('submit')}
-      {...args}
-    />
-  )
+  },
 }

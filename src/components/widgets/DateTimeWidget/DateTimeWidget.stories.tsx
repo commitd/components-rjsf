@@ -1,22 +1,20 @@
-import React, { ComponentProps } from 'react'
-import { Story, Meta } from '@storybook/react'
-import { JSForm } from '../../JSForm'
 import { Type } from '@sinclair/typebox'
-import { action } from '@storybook/addon-actions'
+import { Meta } from '@storybook/react'
 import { DateTimeWidget } from '.'
+import { DefaultStory } from '../../../utils/utils.stories'
 
 export default {
   title: 'Widgets/DateTimeWidget',
   component: DateTimeWidget,
 } as Meta
 
-export const Default: Story = (args) => {
-  const schema = Type.Object({
+export const Default = DefaultStory.bind({})
+Default.args = {
+  schema: Type.Object({
     datetime: Type.String({
       title: 'Date Time',
       description: 'description',
       format: 'date-time',
     }),
-  })
-  return <JSForm schema={schema} onSubmit={action('submit')} {...args} />
+  }),
 }

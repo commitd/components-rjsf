@@ -1,29 +1,20 @@
 import { Type } from '@sinclair/typebox'
-import { action } from '@storybook/addon-actions'
-import { Meta, Story } from '@storybook/react'
-import React from 'react'
+import { Meta } from '@storybook/react'
 import { EmailWidget } from '.'
-import { JSForm } from '../../JSForm'
+import { DefaultStory } from '../../../utils/utils.stories'
 
 export default {
   title: 'Widgets/EmailWidget',
   component: EmailWidget,
 } as Meta
 
-export const Default: Story = (args) => {
-  const schema = Type.Object({
+export const Default = DefaultStory.bind({})
+Default.args = {
+  schema: Type.Object({
     name: Type.String({
       title: 'Email',
       description: 'description',
       format: 'email',
     }),
-  })
-  return (
-    <JSForm
-      schema={schema}
-      onSubmit={action('submit')}
-      showErrorList
-      {...args}
-    />
-  )
+  }),
 }

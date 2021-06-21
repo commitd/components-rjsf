@@ -1,18 +1,15 @@
-import { Type } from '@sinclair/typebox'
-import { action } from '@storybook/addon-actions'
-import { Meta, Story } from '@storybook/react'
-import React from 'react'
+import { Meta } from '@storybook/react'
 import { RadioWidget } from '.'
-import { JSForm } from '../../JSForm'
-import { JSONSchema7 } from 'json-schema'
+import { DefaultStory } from '../../../utils/utils.stories'
 
 export default {
   title: 'Widgets/RadioWidget',
   component: RadioWidget,
 } as Meta
 
-export const Default: Story = (args) => {
-  const schema: JSONSchema7 = {
+export const Default = DefaultStory.bind({})
+Default.args = {
+  schema: {
     definitions: {
       format: {
         title: 'Format',
@@ -42,23 +39,18 @@ export const Default: Story = (args) => {
         $ref: '#/definitions/format',
       },
     },
-  }
-  return (
-    <JSForm
-      schema={schema}
-      uiSchema={{
-        format: {
-          'ui:widget': 'radio',
-        },
-      }}
-      onSubmit={action('submit')}
-      showErrorList
-      {...args}
-    />
-  )
+  },
+  uiSchema: {
+    format: {
+      'ui:widget': 'radio',
+    },
+  },
+  showErrorList: true,
 }
-export const Toggle: Story = (args) => {
-  const schema: JSONSchema7 = {
+
+export const Toggle = DefaultStory.bind({})
+Toggle.args = {
+  schema: {
     definitions: {
       Toggle: {
         title: 'Toggle',
@@ -84,20 +76,13 @@ export const Toggle: Story = (args) => {
         $ref: '#/definitions/Toggle',
       },
     },
-  }
-  return (
-    <JSForm
-      schema={schema}
-      uiSchema={{
-        toggleMask: {
-          'ui:widget': 'radio',
-          'ui:options': {
-            inline: true,
-          },
-        },
-      }}
-      onSubmit={action('submit')}
-      {...args}
-    />
-  )
+  },
+  uiSchema: {
+    toggleMask: {
+      'ui:widget': 'radio',
+      'ui:options': {
+        inline: true,
+      },
+    },
+  },
 }

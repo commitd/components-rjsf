@@ -1,30 +1,28 @@
-import React, { ComponentProps } from 'react'
-import { Story, Meta } from '@storybook/react'
-import { JSForm } from '../../JSForm'
 import { Type } from '@sinclair/typebox'
-import { action } from '@storybook/addon-actions'
+import { Meta } from '@storybook/react'
 import { CheckboxWidget } from '.'
+import { DefaultStory } from '../../../utils/utils.stories'
 
 export default {
   title: 'Widgets/CheckboxWidget',
   component: CheckboxWidget,
 } as Meta
 
-export const Default: Story = (args) => {
-  const schema = Type.Object({
+export const Default = DefaultStory.bind({})
+Default.args = {
+  schema: Type.Object({
     name: Type.Optional(
       Type.Boolean({ title: 'Checkbox', description: 'description' })
     ),
-  })
-  return <JSForm schema={schema} onSubmit={action('submit')} {...args} />
+  }),
 }
 
-export const Required: Story = (args) => {
-  const schema = Type.Object({
+export const Required = DefaultStory.bind({})
+Required.args = {
+  schema: Type.Object({
     name: Type.Boolean({
       title: 'Checkbox',
       description: 'description',
     }),
-  })
-  return <JSForm schema={schema} onSubmit={action('submit')} {...args} />
+  }),
 }

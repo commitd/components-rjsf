@@ -1,17 +1,15 @@
-import { action } from '@storybook/addon-actions'
-import { Meta, Story } from '@storybook/react'
-import { JSONSchema7 } from 'json-schema'
-import React from 'react'
+import { Meta } from '@storybook/react'
 import { UnsupportedField } from '.'
-import { JSForm } from '../../JSForm'
+import { DefaultStory } from '../../../utils/utils.stories'
 
 export default {
   title: 'Fields/UnsupportedField',
   component: UnsupportedField,
 } as Meta
 
-export const Default: Story = (args) => {
-  const schema: JSONSchema7 = {
+export const Default = DefaultStory.bind({})
+Default.args = {
+  schema: {
     title: 'A registration form',
     description: 'A simple form example.',
     type: 'object',
@@ -24,16 +22,5 @@ export const Default: Story = (args) => {
         default: 'Test',
       },
     },
-  }
-
-  const uiSchema = {}
-
-  return (
-    <JSForm
-      schema={schema}
-      uiSchema={uiSchema}
-      onSubmit={action('submit')}
-      {...args}
-    />
-  )
+  },
 }

@@ -1,55 +1,39 @@
 import { Type } from '@sinclair/typebox'
-import { action } from '@storybook/addon-actions'
-import { Meta, Story } from '@storybook/react'
-import React from 'react'
+import { Meta } from '@storybook/react'
 import { RangeWidget } from '.'
-import { JSForm } from '../../JSForm'
-import { JSONSchema7 } from 'json-schema'
+import { DefaultStory } from '../../../utils/utils.stories'
 
 export default {
   title: 'Widgets/RangeWidget',
   component: RangeWidget,
 } as Meta
 
-export const Default: Story = (args) => {
-  const schema: JSONSchema7 = Type.Object({
+export const Default = DefaultStory.bind({})
+Default.args = {
+  schema: Type.Object({
     range: Type.Number({ title: 'Checkbox', description: 'description' }),
-  })
-  return (
-    <JSForm
-      schema={schema}
-      uiSchema={{
-        range: {
-          'ui:widget': 'range',
-        },
-      }}
-      onSubmit={action('submit')}
-      showErrorList
-      {...args}
-    />
-  )
+  }),
+  uiSchema: {
+    range: {
+      'ui:widget': 'range',
+    },
+  },
+  showErrorList: true,
 }
 
-export const Constraints: Story = (args) => {
-  const schema: JSONSchema7 = Type.Object({
+export const Constraints = DefaultStory.bind({})
+Constraints.args = {
+  schema: Type.Object({
     range: Type.Number({
       title: 'Checkbox',
       description: 'description',
       minimum: 20,
       maximum: 80,
     }),
-  })
-  return (
-    <JSForm
-      schema={schema}
-      uiSchema={{
-        range: {
-          'ui:widget': 'range',
-        },
-      }}
-      onSubmit={action('submit')}
-      showErrorList
-      {...args}
-    />
-  )
+  }),
+  uiSchema: {
+    range: {
+      'ui:widget': 'range',
+    },
+  },
 }

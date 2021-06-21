@@ -1,23 +1,20 @@
-import { action } from '@storybook/addon-actions'
-import { Meta, Story } from '@storybook/react'
-import { JSONSchema7 } from 'json-schema'
-import React from 'react'
+import { Meta } from '@storybook/react'
 import { TitleField } from '.'
-import { JSForm } from '../../JSForm'
+import { DefaultStory } from '../../../utils/utils.stories'
 
 export default {
   title: 'Fields/TitleField',
   component: TitleField,
 } as Meta
 
-export const Default: Story = (args) => {
-  const schema: JSONSchema7 = {
+export const Default = DefaultStory.bind({})
+Default.args = {
+  schema: {
     title: 'Schema dependencies',
     description: 'These samples are best viewed without live validation.',
     type: 'object',
     properties: {
       simple: {
-        src: 'https://spacetelescope.github.io/understanding-json-schema/reference/object.html#dependencies',
         title: 'Simple',
         type: 'object',
         properties: {
@@ -115,9 +112,8 @@ export const Default: Story = (args) => {
         },
       },
     },
-  }
-
-  const uiSchema = {
+  },
+  uiSchema: {
     simple: {
       credit_card: {
         'ui:help':
@@ -148,14 +144,5 @@ export const Default: Story = (args) => {
         },
       },
     },
-  }
-
-  return (
-    <JSForm
-      schema={schema}
-      uiSchema={uiSchema}
-      onSubmit={action('submit')}
-      {...args}
-    />
-  )
+  },
 }
