@@ -19,6 +19,6 @@ export const Fields = {
   // OneOfField: MultiSchemaField,
   // SchemaField,
   // StringField,
-  // TitleField,
+  TitleField,
   UnsupportedField,
 }
