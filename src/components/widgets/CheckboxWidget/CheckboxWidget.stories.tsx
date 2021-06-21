@@ -12,7 +12,19 @@ export default {
 
 export const Default: Story = (args) => {
   const schema = Type.Object({
-    name: Type.Boolean({ title: 'Checkbox', description: 'description' }),
+    name: Type.Optional(
+      Type.Boolean({ title: 'Checkbox', description: 'description' })
+    ),
+  })
+  return <JSForm schema={schema} onSubmit={action('submit')} {...args} />
+}
+
+export const Required: Story = (args) => {
+  const schema = Type.Object({
+    name: Type.Boolean({
+      title: 'Checkbox',
+      description: 'description',
+    }),
   })
   return <JSForm schema={schema} onSubmit={action('submit')} {...args} />
 }

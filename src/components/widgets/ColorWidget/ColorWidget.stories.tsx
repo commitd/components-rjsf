@@ -12,18 +12,11 @@ export default {
 
 export const Default: Story = (args) => {
   const schema = Type.Object({
-    name: Type.String({
+    color: Type.String({
       title: 'Color',
       description: 'description',
       format: 'color',
     }),
   })
-  return (
-    <JSForm
-      schema={schema}
-      onSubmit={action('submit')}
-      showErrorList
-      {...args}
-    />
-  )
+  return <JSForm schema={schema} onSubmit={action('submit')} {...args} />
 }

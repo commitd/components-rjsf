@@ -31,7 +31,6 @@ export const RadioWidget: FC<WidgetProps> = ({
 
   return (
     <RadioGroup
-      css={{ py: '$3' }}
       value={`${value}`}
       orientation={row ? 'horizontal' : 'vertical'}
       onValueChange={_onChange}

@@ -51,37 +51,31 @@ export const CheckboxesWidget: FC<WidgetProps> = ({
     onFocus(id, value)
 
   return (
-    <>
-      <Label required={required} htmlFor={id}>
-        {label || schema.title}
-      </Label>
-      <Flex
-        css={{
-          flexDirection: inline ? 'row' : 'column',
-          flexWrap: 'wrap',
-          gap: '$2',
-          mt: '$3',
-        }}
-      >
-        {enumOptions.map((option: Option, index: number) => {
-          const checked = (value as string[]).indexOf(option.value) !== -1
-          const itemDisabled =
-            enumDisabled &&
-            (enumDisabled as string[]).indexOf(option.value) != -1
-          return (
-            <Checkbox
-              key={index}
-              label={option.label}
-              id={`${id}_${index}`}
-              checked={checked}
-              disabled={disabled || itemDisabled || readonly}
-              onCheckedChange={_onChange(option)}
-              onBlur={_onBlur}
-              onFocus={_onFocus}
-            />
-          )
-        })}
-      </Flex>
-    </>
+    <Flex
+      css={{
+        flexDirection: inline ? 'row' : 'column',
+        flexWrap: 'wrap',
+        gap: '$2',
+        mt: '$3',
+      }}
+    >
+      {enumOptions.map((option: Option, index: number) => {
+        const checked = (value as string[]).indexOf(option.value) !== -1
+        const itemDisabled =
+          enumDisabled && (enumDisabled as string[]).indexOf(option.value) != -1
+        return (
+          <Checkbox
+            key={index}
+            label={option.label}
+            id={`${id}_${index}`}
+            checked={checked}
+            disabled={disabled || itemDisabled || readonly}
+            onCheckedChange={_onChange(option)}
+            onBlur={_onBlur}
+            onFocus={_onFocus}
+          />
+        )
+      })}
+    </Flex>
   )
 }

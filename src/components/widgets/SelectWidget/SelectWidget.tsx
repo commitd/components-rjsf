@@ -32,7 +32,7 @@ const processValue = (schema: any, value: any) => {
   } else if (type === 'array' && items && nums.has(items.type)) {
     return value.map(asNumber)
   } else if (type === 'boolean') {
-    return value === 'true'
+    return value
   } else if (type === 'number') {
     return asNumber(value)
   }
@@ -50,6 +50,15 @@ const processValue = (schema: any, value: any) => {
   return value
 }
 
+type OptionsArray = Array<{ value: any; label: string }>
+
+function getValue(options: OptionsArray, value: any): string {
+  const found = options.find((a) => value === a.value)
+  if (found) {
+    return found.label || found.value
+  } else return ''
+}
+
 export const SelectWidget: FC<SelectWidgetProps> = ({
   id,
   placeholder,
@@ -57,7 +66,6 @@ export const SelectWidget: FC<SelectWidgetProps> = ({
   readonly,
   disabled,
   type,
-  label,
   value,
   onChange,
   onBlur,
@@ -68,6 +76,8 @@ export const SelectWidget: FC<SelectWidgetProps> = ({
   multiple,
   rawErrors = [],
   // Extract and ignore these props
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  defaultValue,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   autofocus,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -84,20 +94,20 @@ export const SelectWidget: FC<SelectWidgetProps> = ({
   const _onFocus = ({ target: { value } }: FocusEvent<HTMLSelectElement>) =>
     onFocus(id, processValue(schema, value))
 
-  const displayLabel = getDisplayLabel(schema, uiSchema)
   const SelectType = getSelectType(type || schema.type)
+
+  const selectValue = getValue(enumOptions as OptionsArray, value)
 
   return (
     <Select
       id={id}
       placeholder={placeholder}
-      label={displayLabel ? label || schema.title : false}
       required={required}
       disabled={disabled}
       readOnly={readonly}
       type={SelectType}
       // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-      value={value || value?.value || ''}
+      value={selectValue}
       state={rawErrors.length > 0 ? 'invalid' : undefined}
       onValueChange={_onChange}
       onBlur={_onBlur}

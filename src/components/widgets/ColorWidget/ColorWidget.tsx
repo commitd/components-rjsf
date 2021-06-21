@@ -1,31 +1,22 @@
+import { Box, Button, Column, Row } from '@committed/components'
 import { WidgetProps } from '@rjsf/core'
-import React, {
-  FC,
-  useRef,
-  ChangeEventHandler,
-  useState,
-  MouseEventHandler,
-} from 'react'
-import { Text, Box, Row, Button, Column } from '@committed/components'
-import { TextWidget } from '../TextWidget'
-
-// export const ColorWidget: FC<WidgetProps> = (props) => {
-//   return <TextWidget {...props} type="color" />
-// }
+import React, { ChangeEventHandler, FC, MouseEventHandler, useRef } from 'react'
 
 export const ColorWidget: FC<WidgetProps> = (props) => {
   const hiddenInput = useRef<HTMLInputElement>(null)
 
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-  const { onChange, id, readonly, disabled, value } = props
+  const { onChange, id, readonly, disabled, value, onFocus, onBlur } = props
 
   const isDisabled: boolean = readonly || disabled
   const handleChange: ChangeEventHandler<HTMLInputElement> = (event) => {
     onChange(event.target.value)
+    onBlur(id, event.target.value)
   }
 
   const handleClick: MouseEventHandler<HTMLElement> = () => {
     hiddenInput?.current?.click()
+    onFocus(id, value)
   }
 
   return (
@@ -52,7 +43,6 @@ export const ColorWidget: FC<WidgetProps> = (props) => {
         value={value as string}
         disabled={isDisabled}
         onChange={handleChange}
-        defaultValue=""
         style={{ display: 'none' }}
       />
     </Column>

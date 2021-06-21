@@ -77,7 +77,7 @@ export const Toggle: Story = (args) => {
     },
     title: 'Image editor',
     type: 'object',
-    required: [],
+    required: ['toggleMask'],
     properties: {
       toggleMask: {
         title: 'Apply color mask',
@@ -97,7 +97,6 @@ export const Toggle: Story = (args) => {
         },
       }}
       onSubmit={action('submit')}
-      showErrorList
       {...args}
     />
   )

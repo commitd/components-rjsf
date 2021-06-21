@@ -25,16 +25,18 @@ export const TextWidget: FC<TextWidgetProps> = ({
   readonly,
   disabled,
   type,
-  label,
   value,
   onChange,
   onBlur,
   onFocus,
   options,
   schema,
-  uiSchema,
   rawErrors = [],
   // Extract and ignore these props
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  label,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  uiSchema,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   autofocus,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -50,7 +52,6 @@ export const TextWidget: FC<TextWidgetProps> = ({
   const _onFocus = ({ target: { value } }: FocusEvent<HTMLInputElement>) =>
     onFocus(id, value)
 
-  const displayLabel = getDisplayLabel(schema, uiSchema)
   const inputType = getInputType(type || schema.type)
 
   const rangeProps = inputType === 'number' ? { ...rangeSpec(schema) } : {}
@@ -59,7 +60,6 @@ export const TextWidget: FC<TextWidgetProps> = ({
     <Input
       id={id}
       placeholder={placeholder}
-      label={displayLabel ? label || schema.title : false}
       required={required}
       disabled={disabled}
       readOnly={readonly}

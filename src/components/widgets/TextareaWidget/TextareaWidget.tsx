@@ -22,18 +22,20 @@ export const TextareaWidget: FC<TextareaWidgetProps> = ({
   readonly,
   disabled,
   type,
-  label,
   value,
   onChange,
   onBlur,
   onFocus,
   options,
   schema,
-  uiSchema,
   rawErrors = [],
   // Extract and ignore these props
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   autofocus,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  uiSchema,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  label,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   formContext,
   ...textFieldProps
@@ -47,7 +49,6 @@ export const TextareaWidget: FC<TextareaWidgetProps> = ({
   const _onFocus = ({ target: { value } }: FocusEvent<HTMLInputElement>) =>
     onFocus(id, value)
 
-  const displayLabel = getDisplayLabel(schema, uiSchema)
   const inputType = getInputType(type || schema.type)
 
   const css: CSS = {
@@ -65,7 +66,6 @@ export const TextareaWidget: FC<TextareaWidgetProps> = ({
       // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
       css={css}
       placeholder={placeholder}
-      label={displayLabel ? label || schema.title : false}
       required={required}
       disabled={disabled}
       readOnly={readonly}
