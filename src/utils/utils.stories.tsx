@@ -4,7 +4,7 @@ import { Type } from '@sinclair/typebox'
 import { Story, Meta } from '@storybook/react'
 import { JSForm } from '../components/JSForm'
 
-export const DefaultStory: Story<ComponentProps<typeof JSForm>> = ({
+export const DefaultStory: Story<Partial<ComponentProps<typeof JSForm>>> = ({
   schema = Type.Object({
     name: Type.String({ name: 'Name', description: 'description' }),
   }),

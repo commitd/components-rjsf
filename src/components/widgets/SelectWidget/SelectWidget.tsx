@@ -1,34 +1,29 @@
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-/* eslint-disable @typescript-eslint/no-unsafe-return */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unsafe-return */
+/* eslint-disable @typescript-eslint/no-unsafe-call */
 import { Select, SelectItem } from '@committed/components'
 import { utils, WidgetProps } from '@rjsf/core'
-import React, { ChangeEvent, ComponentProps, FC, FocusEvent } from 'react'
-const { getDisplayLabel, asNumber, guessType } = utils
+import React, { ComponentProps, FC, FocusEvent } from 'react'
+import { JSONSchema7, JSONSchema7Definition } from 'json-schema'
+
+const { asNumber, guessType } = utils
 
 type SelectProps = ComponentProps<typeof Select>
 
 export type SelectWidgetProps = WidgetProps &
   Pick<SelectProps, Exclude<keyof SelectProps, 'onBlur' | 'onFocus'>>
 
-function getSelectType(baseType: string) {
-  if (baseType === 'string') {
-    return 'text'
-  }
-  if (baseType === 'integer') {
-    return 'number'
-  }
-  return baseType
-}
-
 const nums = new Set(['number', 'integer'])
 
-const processValue = (schema: any, value: any) => {
+const processValue = (schema: JSONSchema7, value: any) => {
   // "enum" is a reserved word, so only "type" and "items" can be destructured
   const { type, items } = schema
   if (value === '') {
     return undefined
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
   } else if (type === 'array' && items && nums.has(items.type)) {
     return value.map(asNumber)
   } else if (type === 'boolean') {
@@ -65,17 +60,20 @@ export const SelectWidget: FC<SelectWidgetProps> = ({
   required,
   readonly,
   disabled,
-  type,
   value,
   onChange,
   onBlur,
   onFocus,
   options,
   schema,
-  uiSchema,
-  multiple,
   rawErrors = [],
   // Extract and ignore these props
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  type,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  uiSchema,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  multiple,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   defaultValue,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -94,8 +92,6 @@ export const SelectWidget: FC<SelectWidgetProps> = ({
   const _onFocus = ({ target: { value } }: FocusEvent<HTMLSelectElement>) =>
     onFocus(id, processValue(schema, value))
 
-  const SelectType = getSelectType(type || schema.type)
-
   const selectValue = getValue(enumOptions as OptionsArray, value)
 
   return (
@@ -105,8 +101,7 @@ export const SelectWidget: FC<SelectWidgetProps> = ({
       required={required}
       disabled={disabled}
       readOnly={readonly}
-      type={SelectType}
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+      type="text"
       value={selectValue}
       state={rawErrors.length > 0 ? 'invalid' : undefined}
       onValueChange={_onChange}
@@ -115,8 +110,8 @@ export const SelectWidget: FC<SelectWidgetProps> = ({
       {...(textFieldProps as SelectProps)}
     >
       {(enumOptions as any).map(({ value, label }: any, i: number) => {
-        const disabled: any =
-          enumDisabled && (enumDisabled as any).indexOf(value) != -1
+        const disabled: boolean =
+          ((enumDisabled || []) as string[]).indexOf(value) != -1
         return (
           <SelectItem key={i} value={value} disabled={disabled}>
             {label}

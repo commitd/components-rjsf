@@ -1,9 +1,13 @@
-import React from 'react'
-import { withTheme, ThemeProps, utils } from '@rjsf/core'
 import { Box, Button } from '@committed/components'
-import { Widgets } from '../widgets'
+import { ThemeProps, utils, withTheme } from '@rjsf/core'
+import React from 'react'
 import { Fields } from '../fields'
-import { FieldTemplate, ObjectFieldTemplate } from '../templates'
+import {
+  ArrayFieldTemplate,
+  FieldTemplate,
+  ObjectFieldTemplate,
+} from '../templates'
+import { Widgets } from '../widgets'
 
 const { getDefaultRegistry } = utils
 const { fields, widgets } = getDefaultRegistry()
@@ -25,6 +29,7 @@ const Theme: ThemeProps = {
   },
   FieldTemplate,
   ObjectFieldTemplate,
+  ArrayFieldTemplate,
 }
 
 export const JSForm = withTheme(Theme)
