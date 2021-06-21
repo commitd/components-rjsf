@@ -3,7 +3,7 @@ import { withTheme, ThemeProps, utils } from '@rjsf/core'
 import { Box, Button } from '@committed/components'
 import { Widgets } from '../widgets'
 import { Fields } from '../fields'
-import { FieldTemplate } from '../templates'
+import { FieldTemplate, ObjectFieldTemplate } from '../templates'
 
 const { getDefaultRegistry } = utils
 const { fields, widgets } = getDefaultRegistry()
@@ -24,6 +24,7 @@ const Theme: ThemeProps = {
     ...Widgets,
   },
   FieldTemplate,
+  ObjectFieldTemplate,
 }
 
 export const JSForm = withTheme(Theme)
