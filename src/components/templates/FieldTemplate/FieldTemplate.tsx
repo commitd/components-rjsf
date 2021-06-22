@@ -55,7 +55,6 @@ const WrapIfAdditional = ({
   onDropPropertyClick,
   onKeyChange,
   readonly,
-  required,
   schema,
 }: WrapIfAdditionalProps) => {
   const keyLabel = `${label} Key`
@@ -72,28 +71,30 @@ const WrapIfAdditional = ({
     onKeyChange(target.value)
 
   return (
-    <Row css={{ gap: '$3', alignItems: 'flex-end' }} key={`${id}-key`}>
-      <Column css={{ flex: '1', gap: '$1', mb: '$4' }}>
-        <Label htmlFor={id}>{keyLabel}</Label>
-        <Input
-          id={`${id}-key`}
-          defaultValue={label}
-          disabled={disabled || readonly}
-          name={`${id}-key`}
-          onBlur={!readonly ? handleBlur : undefined}
-          type="text"
-        />
-      </Column>
-      <Box css={{ flex: '1' }}>{children}</Box>
-      <Box css={{ mb: '$5' }}>
-        <IconButton
-          icon="remove"
-          tabIndex={-1}
-          disabled={disabled || readonly}
-          onClick={onDropPropertyClick(label)}
-        />
-      </Box>
-    </Row>
+    <>
+      <Row css={{ gap: '$3', alignItems: 'flex-end' }} key={`${id}-key`}>
+        <Column css={{ flex: '1', gap: '$1', mb: '$4' }}>
+          <Label htmlFor={id}>{keyLabel}</Label>
+          <Input
+            id={`${id}-key`}
+            defaultValue={label}
+            disabled={disabled || readonly}
+            name={`${id}-key`}
+            onBlur={!readonly ? handleBlur : undefined}
+            type="text"
+          />
+        </Column>
+        <Box css={{ flex: '1' }}>{children}</Box>
+        <Box css={{ mb: '$5' }}>
+          <IconButton
+            icon="remove"
+            tabIndex={-1}
+            disabled={disabled || readonly}
+            onClick={onDropPropertyClick(label)}
+          />
+        </Box>
+      </Row>
+    </>
   )
 }
 

@@ -1,9 +1,14 @@
-import { Box, Column, Row } from '@committed/components'
+import { Box, Column, Row, Divider, styled } from '@committed/components'
 import { ObjectFieldTemplateProps, utils } from '@rjsf/core'
 import React from 'react'
 import { IconButton } from '../../../utils'
 
 const { canExpand } = utils
+
+const ObjectDivider = styled(Divider, {
+  width: '100% !important',
+  mt: '0 !important',
+})
 
 export const ObjectFieldTemplate: React.FC<ObjectFieldTemplateProps> = ({
   DescriptionField,
@@ -24,7 +29,7 @@ export const ObjectFieldTemplate: React.FC<ObjectFieldTemplateProps> = ({
     <fieldset id={idSchema.$id}>
       {(uiSchema['ui:title'] || title) && (
         <>
-          <Row css={{ gap: '$1', mb: '$3' }}>
+          <Row css={{ gap: '$1' }}>
             <TitleField
               id={`${idSchema.$id}-title`}
               title={title}
@@ -37,6 +42,7 @@ export const ObjectFieldTemplate: React.FC<ObjectFieldTemplateProps> = ({
               />
             )}
           </Row>
+          <ObjectDivider />
         </>
       )}
       <Column>

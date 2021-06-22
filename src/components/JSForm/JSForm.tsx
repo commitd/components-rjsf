@@ -4,11 +4,11 @@ import React from 'react'
 import { Fields } from '../fields'
 import {
   ArrayFieldTemplate,
+  ErrorList,
   FieldTemplate,
   ObjectFieldTemplate,
 } from '../templates'
 import { Widgets } from '../widgets'
-
 const { getDefaultRegistry } = utils
 const { fields, widgets } = getDefaultRegistry()
 
@@ -27,9 +27,10 @@ const Theme: ThemeProps = {
     ...widgets,
     ...Widgets,
   },
+  ArrayFieldTemplate,
+  ErrorList,
   FieldTemplate,
   ObjectFieldTemplate,
-  ArrayFieldTemplate,
 }
 
 export const JSForm = withTheme(Theme)
