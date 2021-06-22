@@ -1,10 +1,9 @@
 import { Meta } from '@storybook/react'
-import { TitleField } from '.'
-import { DefaultStory } from '../../../utils/utils.stories'
+import { argTypes, DefaultStory } from '../../../utils/utils.stories'
 
 export default {
   title: 'Fields/TitleField',
-  component: TitleField,
+  argTypes,
 } as Meta
 
 export const Default = DefaultStory.bind({})

@@ -1,7 +1,6 @@
 import { CSS, TextArea } from '@committed/components'
-import { utils, WidgetProps } from '@rjsf/core'
+import { WidgetProps } from '@rjsf/core'
 import React, { ChangeEvent, ComponentProps, FC, FocusEvent } from 'react'
-const { getDisplayLabel } = utils
 
 type TextAreaProps = ComponentProps<typeof TextArea>
 
@@ -23,6 +22,7 @@ export const TextareaWidget: FC<TextareaWidgetProps> = ({
   disabled,
   type,
   value,
+  autofocus,
   onChange,
   onBlur,
   onFocus,
@@ -30,8 +30,6 @@ export const TextareaWidget: FC<TextareaWidgetProps> = ({
   schema,
   rawErrors = [],
   // Extract and ignore these props
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  autofocus,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   uiSchema,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -69,6 +67,8 @@ export const TextareaWidget: FC<TextareaWidgetProps> = ({
       required={required}
       disabled={disabled}
       readOnly={readonly}
+      // eslint-disable-next-line jsx-a11y/no-autofocus
+      autoFocus={autofocus}
       type={inputType}
       // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
       value={value || value === 0 ? value : ''}

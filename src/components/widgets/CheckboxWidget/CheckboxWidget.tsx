@@ -1,6 +1,6 @@
 import { Checkbox, CheckedState, Monospace } from '@committed/components'
 import { utils, WidgetProps } from '@rjsf/core'
-import React, { ChangeEvent, FC, FocusEvent } from 'react'
+import React, { FC, FocusEvent } from 'react'
 import { REQUIRED_FIELD_SYMBOL } from '../../../utils'
 const { schemaRequiresTrueValue } = utils
 
@@ -8,6 +8,7 @@ export const CheckboxWidget: FC<WidgetProps> = ({
   schema,
   id,
   value,
+  autofocus,
   disabled,
   readonly,
   label,
@@ -15,9 +16,6 @@ export const CheckboxWidget: FC<WidgetProps> = ({
   onChange,
   onBlur,
   onFocus,
-  // Extract and ignore these props
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  autofocus,
 }) => {
   // Because an unchecked checkbox will cause html5 validation to fail, only add
   // the "required" attribute if the field value must be "true", due to the
@@ -53,6 +51,8 @@ export const CheckboxWidget: FC<WidgetProps> = ({
       onCheckedChange={_onChange}
       onBlur={_onBlur}
       onFocus={_onFocus}
+      // eslint-disable-next-line jsx-a11y/no-autofocus
+      autoFocus={autofocus}
     />
   )
 }

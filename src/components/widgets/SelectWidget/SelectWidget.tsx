@@ -5,8 +5,8 @@
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 import { Select, SelectItem } from '@committed/components'
 import { utils, WidgetProps } from '@rjsf/core'
+import { JSONSchema7 } from 'json-schema'
 import React, { ComponentProps, FC, FocusEvent } from 'react'
-import { JSONSchema7, JSONSchema7Definition } from 'json-schema'
 
 const { asNumber, guessType } = utils
 
@@ -64,23 +64,10 @@ export const SelectWidget: FC<SelectWidgetProps> = ({
   onChange,
   onBlur,
   onFocus,
+  autofocus,
   options,
   schema,
   rawErrors = [],
-  // Extract and ignore these props
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  type,
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  uiSchema,
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  multiple,
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  defaultValue,
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  autofocus,
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  formContext,
-  ...textFieldProps
 }: SelectWidgetProps) => {
   const { enumOptions, enumDisabled } = options
 
@@ -107,7 +94,8 @@ export const SelectWidget: FC<SelectWidgetProps> = ({
       onValueChange={_onChange}
       onBlur={_onBlur}
       onFocus={_onFocus}
-      {...(textFieldProps as SelectProps)}
+      // eslint-disable-next-line jsx-a11y/no-autofocus
+      autoFocus={autofocus}
     >
       {(enumOptions as any).map(({ value, label }: any, i: number) => {
         const disabled: boolean =

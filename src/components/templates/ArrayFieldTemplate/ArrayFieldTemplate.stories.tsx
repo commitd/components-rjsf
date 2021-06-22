@@ -1,10 +1,9 @@
 import { Meta } from '@storybook/react'
-import { ArrayFieldTemplate } from '.'
-import { DefaultStory } from '../../../utils/utils.stories'
+import { argTypes, DefaultStory } from '../../../utils/utils.stories'
 
 export default {
   title: 'Templates/ArrayFieldTemplate',
-  component: ArrayFieldTemplate,
+  argTypes,
 } as Meta
 
 export const Default = DefaultStory.bind({})

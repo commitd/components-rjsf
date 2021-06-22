@@ -1,4 +1,4 @@
-import { CSS, IconButton as Button, Svg } from '@committed/components'
+import { IconButton as Button, Svg } from '@committed/components'
 import {
   mdiArrowDownBold,
   mdiArrowUpBold,
@@ -27,18 +27,17 @@ const mappings: Record<string, string> = {
 
 type IconButtonProps = React.ComponentProps<typeof Button> & {
   icon: string
-  iconCss?: CSS
 }
 
 export const IconButton: React.FC<IconButtonProps> = ({
   icon,
-  iconProps,
   ...otherProps
-}: IconButtonProps) => {
+}) => {
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
   const path = mappings[icon]
   return (
     <Button {...otherProps}>
-      <Svg path={path} {...iconProps} />
+      <Svg path={path} />
     </Button>
   )
 }

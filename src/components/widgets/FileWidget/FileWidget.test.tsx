@@ -1,13 +1,27 @@
 import React from 'react'
-import { renderDark, renderLight } from '../../../utils/test-utils'
+import {
+  renderDark,
+  renderLight,
+  screen,
+  userEvent,
+} from '../../../utils/test-utils'
 import { Default } from './FileWidget.stories'
 
 it('renders light without error', () => {
-  const { asFragment } = renderLight(<Default />)
+  const { asFragment } = renderLight(<Default {...Default.args} />)
   expect(asFragment()).toBeDefined()
+  userEvent.click(screen.getByRole('button', { name: /file/i }))
 })
 
 it('renders dark without error', () => {
-  const { asFragment } = renderDark(<Default />)
+  const { asFragment } = renderDark(
+    <Default
+      {...Default.args}
+      formData={{
+        file: 'data:application/octet-stream;name=IconButton.stories.tsx;base64,aW1wb3J0IFJlYWN0IGZyb20gJ3JlYWN0JwppbXBvcnQgeyBhY3Rpb24gfSBmcm9tICdAc3Rvcnlib29rL2FkZG9uLWFjdGlvbnMnCmltcG9ydCB7IFN0b3J5LCBNZXRhIH0gZnJvbSAnQHN0b3J5Ym9vay9yZWFjdCcKaW1wb3J0IHsgSWNvbkJ1dHRvbiB9IGZyb20gJy4nCmltcG9ydCB7IENoZWNrLCBDaGV2cm9uRG93biwgQ2hlY2tJbmRldGVybWluYXRlLCBSb3cgfSBmcm9tICcuLi8nCgpleHBvcnQgZGVmYXVsdCB7CiAgdGl0bGU6ICdDb21wb25lbnRzL0ljb25CdXR0b24nLAogIGNvbXBvbmVudDogSWNvbkJ1dHRvbiwKfSBhcyBNZXRhCgpleHBvcnQgY29uc3QgRGVmYXVsdDogUmVhY3QuRkMgPSAoKSA9PiAoCiAgPEljb25CdXR0b24+CiAgICA8Q2hlY2sgLz4KICA8L0ljb25CdXR0b24+CikKCmV4cG9ydCBjb25zdCBTdGF0ZXMgPSAoKSA9PiAoCiAgPFJvdyBjc3M9e3sgZ2FwOiAnJDMnIH19PgogICAgPEljb25CdXR0b24gb25DbGljaz17YWN0aW9uKCdkZWxldGUnKX0gYXJpYS1sYWJlbD0iY2hlY2siPgogICAgICA8Q2hlY2sgLz4KICAgIDwvSWNvbkJ1dHRvbj4KICAgIDxJY29uQnV0dG9uIGZvcmNlPSJob3ZlciIgb25DbGljaz17YWN0aW9uKCdkZWxldGUnKX0gYXJpYS1sYWJlbD0iY2hlY2siPgogICAgICA8Q2hlY2sgLz4KICAgIDwvSWNvbkJ1dHRvbj4KICAgIDxJY29uQnV0dG9uIGZvcmNlPSJmb2N1cyIgb25DbGljaz17YWN0aW9uKCdkZWxldGUnKX0gYXJpYS1sYWJlbD0iY2hlY2siPgogICAgICA8Q2hlY2sgLz4KICAgIDwvSWNvbkJ1dHRvbj4KICAgIDxJY29uQnV0dG9uIG9uQ2xpY2s9e2FjdGlvbignZGVsZXRlJyl9IGFyaWEtbGFiZWw9ImNoZWNrIj4KICAgICAgPENoZWNrIC8+CiAgICA8L0ljb25CdXR0b24+CiAgPC9Sb3c+CikKCmV4cG9ydCBjb25zdCBQcmltYXJ5ID0gKCkgPT4gKAogICAgPFJvdyBjc3M9e3sgZ2FwOiAnJDMnIH19PgogICAgICA8SWNvbkJ1dHRvbiBvbkNsaWNrPXthY3Rpb24oJ2RlbGV0ZScpfSBhcmlhLWxhYmVsPSJjaGVjayI+CiAgICAgICAgPENoZWNrIC8+CiAgICAgIDwvSWNvbkJ1dHRvbj4KICAgICAgPEljb25CdXR0b24gZm9yY2U9ImhvdmVyIiBvbkNsaWNrPXthY3Rpb24oJ2RlbGV0ZScpfSBhcmlhLWxhYmVsPSJjaGVjayI+CiAgICAgICAgPENoZWNrIC8+CiAgICAgIDwvSWNvbkJ1dHRvbj4KICAgICAgPEljb25CdXR0b24gZm9yY2U9ImZvY3VzIiBvbkNsaWNrPXthY3Rpb24oJ2RlbGV0ZScpfSBhcmlhLWxhYmVsPSJjaGVjayI+CiAgICAgICAgPENoZWNrIC8+CiAgICAgIDwvSWNvbkJ1dHRvbj4KICAgICAgPEljb25CdXR0b24gb25DbGljaz17YWN0aW9uKCdkZWxldGUnKX0gYXJpYS1sYWJlbD0iY2hlY2siPgogICAgICAgIDxDaGVjayAvPgogICAgICA8L0ljb25CdXR0b24+CiAgICA8L1Jvdz4KICApCgpleHBvcnQgY29uc3QgVmFyaWF0aW9ucyA9ICgpID0+ICgKICA8Um93IGNzcz17eyBnYXA6ICckMycgfX0+CiAgICA8SWNvbkJ1dHRvbiBvbkNsaWNrPXthY3Rpb24oJ2RlbGV0ZScpfSBhcmlhLWxhYmVsPSJkZWxldGUiPgogICAgICA8Q2hlY2sgLz4KICAgIDwvSWNvbkJ1dHRvbj4KCiAgICA8SWNvbkJ1dHRvbgogICAgICBvbkNsaWNrPXthY3Rpb24oJ2RlbGV0ZScpfQogICAgICBhcmlhLWxhYmVsPSJkZWxldGUiCiAgICAgIGRpc2FibGVkCiAgICAgIGNvbG9yPSJwcmltYXJ5IgogICAgPgogICAgICA8Q2hldnJvbkRvd24gLz4KICAgIDwvSWNvbkJ1dHRvbj4KCiAgICA8SWNvbkJ1dHRvbgogICAgICBvbkNsaWNrPXthY3Rpb24oJ2NsaWNrJyl9CiAgICAgIGNvbG9yPSJzZWNvbmRhcnkiCiAgICAgIGFyaWEtbGFiZWw9ImFkZCBhbiBhbGFybSIKICAgID4KICAgICAgPEljb25zLkFsYXJtIC8+CiAgICA8L0ljb25CdXR0b24+CgogICAgPEljb25CdXR0b24KICAgICAgb25DbGljaz17YWN0aW9uKCdjbGljaycpfQogICAgICBjb2xvcj0icHJpbWFyeSIKICAgICAgYXJpYS1sYWJlbD0iYWRkIHRvIHNob3BwaW5nIGNhcnQiCiAgICA+CiAgICAgIDxDaGVjayAvPgogICAgPC9JY29uQnV0dG9uPgogIDwvUm93PgopCg==',
+      }}
+    />
+  )
   expect(asFragment()).toBeDefined()
+  expect(screen.queryByText('IconButton.stories.tsx')).toBeInTheDocument()
 })

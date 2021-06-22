@@ -1,10 +1,9 @@
 import { Meta } from '@storybook/react'
-import { CheckboxesWidget } from '.'
-import { DefaultStory } from '../../../utils/utils.stories'
+import { argTypes, DefaultStory } from '../../../utils/utils.stories'
 
 export default {
   title: 'Widgets/CheckboxesWidget',
-  component: CheckboxesWidget,
+  argTypes,
 } as Meta
 
 export const Default = DefaultStory.bind({})

@@ -10,6 +10,7 @@ export const RadioWidget: FC<WidgetProps> = ({
   value,
   disabled,
   readonly,
+  autofocus,
   onChange,
   onBlur,
   onFocus,
@@ -36,6 +37,8 @@ export const RadioWidget: FC<WidgetProps> = ({
       onValueChange={_onChange}
       onBlur={_onBlur}
       onFocus={_onFocus}
+      // eslint-disable-next-line jsx-a11y/no-autofocus
+      autoFocus={autofocus}
     >
       {enumOptions.map((option: Option, index: number) => {
         const itemDisabled =

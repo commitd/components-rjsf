@@ -1,10 +1,9 @@
 import { Meta } from '@storybook/react'
-import { SelectWidget } from '.'
-import { DefaultStory } from '../../../utils/utils.stories'
+import { argTypes, DefaultStory } from '../../../utils/utils.stories'
 
 export default {
   title: 'Widgets/SelectWidget',
-  component: SelectWidget,
+  argTypes,
 } as Meta
 
 export const Default = DefaultStory.bind({})

@@ -1,7 +1,7 @@
-import React, { ChangeEvent, FC, FocusEvent } from 'react'
-import { Label, Checkbox, Flex, CheckedState } from '@committed/components'
+import { Checkbox, CheckedState, Flex } from '@committed/components'
 import { WidgetProps } from '@rjsf/core'
-import { Option, isOptions } from '../../../utils'
+import React, { FC, FocusEvent } from 'react'
+import { isOptions, Option } from '../../../utils'
 
 const selectValue = (value: string, selected: string[], all: string[]) => {
   const at = all.indexOf(value)
@@ -14,8 +14,6 @@ const deselectValue = (value: string, selected: string[]): string[] => {
 }
 
 export const CheckboxesWidget: FC<WidgetProps> = ({
-  schema,
-  label,
   id,
   disabled,
   options,
@@ -25,8 +23,6 @@ export const CheckboxesWidget: FC<WidgetProps> = ({
   onChange,
   onBlur,
   onFocus,
-  // Extract and ignore these props
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   autofocus,
 }) => {
   const { enumOptions, enumDisabled, inline } = options
@@ -73,6 +69,9 @@ export const CheckboxesWidget: FC<WidgetProps> = ({
             onCheckedChange={_onChange(option)}
             onBlur={_onBlur}
             onFocus={_onFocus}
+            required={required}
+            // eslint-disable-next-line jsx-a11y/no-autofocus
+            autoFocus={autofocus}
           />
         )
       })}

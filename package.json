@@ -33,7 +33,7 @@
     "analyze": "size-limit --why",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "format": "prettier --write 'src/**/{*.js,*.ts,*.tsx,*.json,*.md,*.mdx}' example/index.tsx",
+    "format": "prettier --write 'src/**/{*.js,*.ts,*.tsx,*.json,*.md,*.mdx}'",
     "deploy-storybook": "storybook-to-ghpages"
   },
   "peerDependencies": {
@@ -90,6 +90,9 @@
   },
   "jest": {
     "preset": "rollpkg",
+    "setupFiles": [
+      "./jest.patch-cssom.js"
+    ],
     "snapshotSerializers": [
       "jest-stitches"
     ],
@@ -138,6 +141,7 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-is": "^17.0.2",
+    "resize-observer-polyfill": "^1.5.1",
     "rollpkg": "^0.5.6",
     "size-limit": "^4.10.2",
     "story-description-loader": "^1.0.0",
@@ -147,7 +151,6 @@
   },
   "dependencies": {
     "@committed/components": "^5.0.0-beta.6",
-    "@committed/hooks": "^0.4.0",
     "@mdi/js": "^5.9.55",
     "@rjsf/core": "^2.5.1"
   }

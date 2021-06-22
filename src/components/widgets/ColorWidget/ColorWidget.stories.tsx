@@ -1,11 +1,10 @@
 import { Type } from '@sinclair/typebox'
 import { Meta } from '@storybook/react'
-import { ColorWidget } from '.'
-import { DefaultStory } from '../../../utils/utils.stories'
+import { argTypes, DefaultStory } from '../../../utils/utils.stories'
 
 export default {
   title: 'Widgets/ColorWidget',
-  component: ColorWidget,
+  argTypes,
 } as Meta
 
 export const Default = DefaultStory.bind({})

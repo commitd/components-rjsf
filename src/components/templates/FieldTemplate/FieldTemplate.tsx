@@ -40,8 +40,8 @@ type WrapIfAdditionalProps = {
   disabled: boolean
   id: string
   label: string
-  onDropPropertyClick: (index: string) => (event?: any) => void
-  onKeyChange: (index: string) => (event?: any) => void
+  onDropPropertyClick: (index: string) => (event?: React.MouseEvent) => void
+  onKeyChange: (index: string) => void
   readonly: boolean
   required: boolean
   schema: JSONSchema7
@@ -67,8 +67,9 @@ const WrapIfAdditional = ({
     return <>{children}</>
   }
 
-  const handleBlur = ({ target }: React.FocusEvent<HTMLInputElement>) =>
-    onKeyChange(target.value)
+  const handleBlur = ({
+    target: { value },
+  }: React.FocusEvent<HTMLInputElement>) => onKeyChange(value)
 
   return (
     <>

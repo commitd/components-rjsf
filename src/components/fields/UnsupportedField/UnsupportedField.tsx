@@ -1,6 +1,6 @@
-import React, { FC } from 'react'
-import { Paragraph, Text, Monospace, Box, Card } from '@committed/components'
+import { Card, Monospace, Paragraph, Text } from '@committed/components'
 import { FieldProps } from '@rjsf/core'
+import React, { FC } from 'react'
 
 export const UnsupportedField: FC<FieldProps> = ({
   schema,
@@ -13,7 +13,10 @@ export const UnsupportedField: FC<FieldProps> = ({
       {idSchema && idSchema.$id && (
         <span>
           {' for'} field{' '}
-          <Monospace css={{ background: '$background', color: '$error' }}>
+          <Monospace
+            as="span"
+            css={{ background: '$background', color: '$error' }}
+          >
             {idSchema.$id}
           </Monospace>
         </span>
@@ -29,9 +32,7 @@ export const UnsupportedField: FC<FieldProps> = ({
         }}
         variant="outline"
       >
-        <Monospace css={{ mx: 'auto' }}>
-          {JSON.stringify(schema, null, 2)}
-        </Monospace>
+        <Monospace>{JSON.stringify(schema, null, 2)}</Monospace>
       </Card>
     )}
   </div>

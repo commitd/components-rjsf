@@ -1,7 +1,7 @@
 import { Input } from '@committed/components'
 import { utils, WidgetProps } from '@rjsf/core'
 import React, { ChangeEvent, ComponentProps, FC, FocusEvent } from 'react'
-const { getDisplayLabel, rangeSpec } = utils
+const { rangeSpec } = utils
 
 type InputProps = ComponentProps<typeof Input>
 
@@ -24,6 +24,7 @@ export const TextWidget: FC<TextWidgetProps> = ({
   required,
   readonly,
   disabled,
+  autofocus,
   type,
   value,
   onChange,
@@ -37,8 +38,6 @@ export const TextWidget: FC<TextWidgetProps> = ({
   label,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   uiSchema,
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  autofocus,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   formContext,
   ...textFieldProps
@@ -63,6 +62,8 @@ export const TextWidget: FC<TextWidgetProps> = ({
       required={required}
       disabled={disabled}
       readOnly={readonly}
+      // eslint-disable-next-line jsx-a11y/no-autofocus
+      autoFocus={autofocus}
       type={inputType}
       // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
       value={value || value === 0 ? value : ''}

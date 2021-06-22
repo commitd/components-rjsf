@@ -1,11 +1,10 @@
 import { Type } from '@sinclair/typebox'
 import { Meta } from '@storybook/react'
-import { UpDownWidget } from '.'
-import { DefaultStory } from '../../../utils/utils.stories'
+import { argTypes, DefaultStory } from '../../../utils/utils.stories'
 
 export default {
   title: 'Widgets/UpDownWidget',
-  component: UpDownWidget,
+  argTypes,
 } as Meta
 
 export const Default = DefaultStory.bind({})

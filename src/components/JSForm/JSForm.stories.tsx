@@ -1,25 +1,22 @@
-import React, { ComponentProps } from 'react'
-import { action } from '@storybook/addon-actions'
 import { Type } from '@sinclair/typebox'
-import { Story, Meta } from '@storybook/react'
+import { Meta } from '@storybook/react'
 import { JSForm } from '.'
+import { DefaultStory, allArgTypes } from '../../utils/utils.stories'
 
 export default {
   title: 'JSForm',
   component: JSForm,
+  argTypes: allArgTypes,
 } as Meta
 
-export const Default: Story<ComponentProps<typeof JSForm>> = ({
-  schema = Type.Object({
+export const Default = DefaultStory.bind({})
+Default.args = {
+  schema: Type.Object({
     name: Type.String({ name: 'Name', description: 'description' }),
   }),
-  onSubmit = action('submit'),
-  ...args
-}) => {
-  return <JSForm schema={schema} onSubmit={onSubmit} {...args} />
 }
 
-export const Simple = Default.bind({})
+export const Simple = DefaultStory.bind({})
 Simple.args = {
   schema: Type.Object({
     firstName: Type.String({
@@ -33,7 +30,7 @@ Simple.args = {
   }),
 }
 
-export const Nested = Default.bind({})
+export const Nested = DefaultStory.bind({})
 Nested.args = {
   schema: {
     title: 'A list of tasks',

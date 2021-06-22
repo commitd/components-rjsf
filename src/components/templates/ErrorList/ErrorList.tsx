@@ -3,7 +3,7 @@ import { ErrorListProps } from '@rjsf/core'
 import React from 'react'
 
 export const ErrorList: React.FC<ErrorListProps> = ({ errors }) => (
-  <Alert severity="error">
+  <Alert css={{ mb: '$3' }} severity="error">
     <AlertTitle>Errors</AlertTitle>
     <AlertContent>
       <ul>
