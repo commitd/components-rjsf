@@ -34,12 +34,6 @@ jobs:
       - name: Lint
         run: npm run lint
 
-      - name: Danger
-        run: npm run danger:pr -- ci
-        env:
-          PR: ${{ github.event.number }}
-          DANGER_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
       - name: Test
         run: npm test -- --ci --coverage --maxWorkers=2
 
