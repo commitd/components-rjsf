@@ -46,11 +46,11 @@
   "size-limit": [
     {
       "path": "dist/committed-components-rjsf.cjs.production.js",
-      "limit": "40 KB"
+      "limit": "850 KB"
     },
     {
       "path": "dist/committed-components-rjsf.esm.js",
-      "limit": "40 KB"
+      "limit": "200 KB"
     }
   ],
   "eslintConfig": {
