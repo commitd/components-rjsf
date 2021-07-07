@@ -19,7 +19,7 @@ export const DescriptionField: FC<FieldProps> = ({ id, description }) => {
     return null
   }
   return (
-    <Tooltip id={id} content={description as string}>
+    <Tooltip id={id} content={description as string} multiline>
       <Icon />
     </Tooltip>
   )

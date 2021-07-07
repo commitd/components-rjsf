@@ -1,5 +1,5 @@
 {
-  "version": "0.1.0-beta.1",
+  "version": "0.1.0-beta.2",
   "name": "@committed/components-rjsf",
   "description": "Committed Components React Json Schema Forms Library",
   "author": "Committed",
@@ -45,11 +45,11 @@
   },
   "size-limit": [
     {
-      "path": "dist/components-rjsf.cjs.production.min.js",
+      "path": "dist/committed-components-rjsf.cjs.production.js",
       "limit": "40 KB"
     },
     {
-      "path": "dist/components-rjsf.esm.js",
+      "path": "dist/committed-components-rjsf.esm.js",
       "limit": "40 KB"
     }
   ],
