@@ -1,4 +1,4 @@
-import { Meta } from '@storybook/addon-docs/blocks'
+import { Meta } from '@storybook/addon-docs'
 import { version } from '../../package.json'
 
 <Meta title="Introduction" />
@@ -18,8 +18,8 @@ Install the library and peer-dependencies in your application
 Pass the JSON Schema to the `JSForm` component and receive the form data via the `onSubmit`.
 
 ```tsx
-import React from 'react'
 import { JSForm } from '@committed/components-rjsf'
+import React from 'react'
 
 export const MyForm = () => {
   const handleSubmit = (e) => {
