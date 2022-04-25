@@ -1,24 +1,24 @@
 <h1 align="center"> Committed Components RJSF </h1>
 <br>
 <p align="center">
-  <img src="https://committed.software/Logo.svg" width="128px" alt="Project Logo"/>
+  <img src="https://committed.io/Logo.svg" width="128px" alt="Project Logo"/>
 </p>
 <p align="center">
   React JSON Schema Forms for Committed Components
 </p>
 
-[![Committed Badge](https://img.shields.io/endpoint?url=https%3A%2F%2Fcommitted.software%2Fbadge)](https://committed.io)
+[![Committed Badge](https://img.shields.io/endpoint?url=https%3A%2F%2Fcommitted.io%2Fbadge)](https://committed.io)
 ![Build Status](https://github.com/commitd/components/workflows/build/badge.svg?branch=main)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=commitd_components-rjsf&metric=alert_status&token=aa002ca75e2f3a6d028af9074bceeda1ffa2f9f7)](https://sonarcloud.io/dashboard?id=commitd_components)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=commitd_components-rjsf&metric=coverage&token=aa002ca75e2f3a6d028af9074bceeda1ffa2f9f7)](https://sonarcloud.io/dashboard?id=commitd_components-rjsf)
 ![GitHub repo size](https://img.shields.io/github/repo-size/commitd/components-rjsf)
 [![Storybook](https://cdn.jsdelivr.net/gh/storybookjs/brand@master/badge/badge-storybook.svg)](https://committed.software/components-rjsf)
 
-For documentation see https://committed.software/components-rjsf
+For documentation see https://jsonforms.committed.software
 
 ## 💻 Development
 
-The main build is performed using `rollpkg`:
+The main build is performed using `esbuild`:
 
 ```bash
 npm run build
@@ -46,4 +46,4 @@ Pull requests go through CI checks using Github Actions. Releases update the dep
 
 ## 📃 License
 
-[MIT](/LICENSE) - © Committed Software 2020-2021 https://committed.io
+[MIT](/LICENSE) - © Committed Software 2020-2022 https://committed.io
