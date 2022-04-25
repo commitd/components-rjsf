@@ -1,4 +1,4 @@
-import { Box, Button } from '@committed/components'
+import { FormButton, styled } from '@committed/components'
 import { ThemeProps, utils, withTheme } from '@rjsf/core'
 import React from 'react'
 import { Fields } from '../fields'
@@ -12,13 +12,7 @@ import { Widgets } from '../widgets'
 const { getDefaultRegistry } = utils
 const { fields, widgets } = getDefaultRegistry()
 
-const DefaultChildren = () => (
-  <Box css={{ mt: '$4' }}>
-    <Button type="submit" variant={'primary' as const}>
-      Submit
-    </Button>
-  </Box>
-)
+const DefaultChildren = () => <FormButton />
 
 const Theme: ThemeProps = {
   children: <DefaultChildren />,
@@ -32,6 +26,12 @@ const Theme: ThemeProps = {
   FieldTemplate,
   ObjectFieldTemplate,
 }
-
-export const JSForm = withTheme(Theme)
+const Themed = withTheme(Theme)
+export const JSForm = styled(Themed, {
+  display: 'flex',
+  flexDirection: 'column',
+  boxSizing: 'border-box',
+  outline: 'none',
+  gap: '$3',
+})
 JSForm.displayName = 'JSForm'

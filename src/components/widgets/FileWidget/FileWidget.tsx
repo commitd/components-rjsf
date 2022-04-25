@@ -1,12 +1,12 @@
+import { Button, Column, Text } from '@committed/components'
+import { utils, WidgetProps } from '@rjsf/core'
 import React, {
-  FC,
   ChangeEventHandler,
-  useState,
+  FC,
   MouseEventHandler,
   useRef,
+  useState,
 } from 'react'
-import { utils, WidgetProps } from '@rjsf/core'
-import { Text, Button, Column } from '@committed/components'
 const { dataURItoBlob } = utils
 
 type FileData = Pick<Blob, 'size' | 'type'> & { name: string; dataURL?: string }
@@ -84,7 +84,9 @@ export const FileWidget: FC<WidgetProps> = (props) => {
 
   const { multiple, onChange, id, readonly, disabled, options } = props
 
-  const handleChange: ChangeEventHandler<HTMLInputElement> = async (event) => {
+  const handleChange: ChangeEventHandler<HTMLInputElement> = async (
+    event
+  ): void => {
     await processFiles(event.target.files).then((filesInfo) => {
       const newValues = filesInfo.map(
         (fileInfo) => fileInfo.dataURL
@@ -104,7 +106,7 @@ export const FileWidget: FC<WidgetProps> = (props) => {
   }
 
   return (
-    <Column css={{ py: '$3', gap: '$2' }}>
+    <Column gap>
       <Button disabled={readonly || disabled} onClick={handleClick}>
         {multiple ? 'Choose files' : 'Choose file'}
       </Button>

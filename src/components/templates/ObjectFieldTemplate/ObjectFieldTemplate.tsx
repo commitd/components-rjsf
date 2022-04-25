@@ -1,12 +1,12 @@
-import { Box, Column, Row, Divider, styled } from '@committed/components'
+import { Box, Divider, Row, styled } from '@committed/components'
 import { ObjectFieldTemplateProps, utils } from '@rjsf/core'
 import React from 'react'
-import { IconButton } from '../../../utils'
+import { Fieldset, IconButton } from '../../../utils'
 
 const { canExpand } = utils
 
 const ObjectDivider = styled(Divider, {
-  width: '100% !important',
+  width: '100%',
   mt: '0 !important',
 })
 
@@ -26,7 +26,7 @@ export const ObjectFieldTemplate: React.FC<ObjectFieldTemplateProps> = ({
   onAddClick,
 }) => {
   return (
-    <fieldset id={idSchema.$id}>
+    <Fieldset id={idSchema.$id}>
       {(uiSchema['ui:title'] || title) && (
         <>
           <Row css={{ gap: '$1' }}>
@@ -45,22 +45,20 @@ export const ObjectFieldTemplate: React.FC<ObjectFieldTemplateProps> = ({
           <ObjectDivider />
         </>
       )}
-      <Column>
-        {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
-        {properties.map((element: any, index: number) => {
-          /* eslint-disable-next-line @typescript-eslint/no-unsafe-member-access */
-          return <Box key={index}>{element.content}</Box>
-        })}
-        {canExpand(schema, uiSchema, formData) && (
-          <Row css={{ justifyContent: 'flex-end' }}>
-            <IconButton
-              icon="plus"
-              onClick={onAddClick(schema)}
-              disabled={disabled || readonly}
-            />
-          </Row>
-        )}
-      </Column>
-    </fieldset>
+      {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
+      {properties.map((element: any, index: number) => {
+        /* eslint-disable-next-line @typescript-eslint/no-unsafe-member-access */
+        return <Box key={index}>{element.content}</Box>
+      })}
+      {canExpand(schema, uiSchema, formData) && (
+        <Row css={{ justifyContent: 'flex-end' }}>
+          <IconButton
+            icon="plus"
+            onClick={onAddClick(schema)}
+            disabled={disabled || readonly}
+          />
+        </Row>
+      )}
+    </Fieldset>
   )
 }

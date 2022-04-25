@@ -1,18 +1,12 @@
-import { CSS, TextArea } from '@committed/components'
+import { TextArea } from '@committed/components'
 import { WidgetProps } from '@rjsf/core'
 import React, { ChangeEvent, ComponentProps, FC, FocusEvent } from 'react'
 
-type TextAreaProps = ComponentProps<typeof TextArea>
-
-export type TextareaWidgetProps = WidgetProps &
-  Pick<TextAreaProps, Exclude<keyof TextAreaProps, 'onBlur' | 'onFocus'>>
-
-function getInputType(baseType: string) {
-  if (baseType === 'string') {
-    return 'text'
-  }
-  return baseType
-}
+type TextAreaProps<C = ComponentProps<typeof TextArea>> = Pick<
+  C,
+  Exclude<keyof C, 'onBlur' | 'onFocus' | 'css'>
+>
+export type TextareaWidgetProps = WidgetProps & TextAreaProps
 
 export const TextareaWidget: FC<TextareaWidgetProps> = ({
   id,
@@ -20,16 +14,17 @@ export const TextareaWidget: FC<TextareaWidgetProps> = ({
   required,
   readonly,
   disabled,
-  type,
+
   value,
   autofocus,
   onChange,
   onBlur,
   onFocus,
   options,
-  schema,
   rawErrors = [],
   // Extract and ignore these props
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  schema,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   uiSchema,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -38,41 +33,31 @@ export const TextareaWidget: FC<TextareaWidgetProps> = ({
   formContext,
   ...textFieldProps
 }: TextareaWidgetProps) => {
-  const _onChange = ({ target: { value } }: ChangeEvent<HTMLInputElement>) =>
+  const _onChange = ({ target: { value } }: ChangeEvent<HTMLTextAreaElement>) =>
     onChange(value === '' ? options.emptyValue : value)
 
-  const _onBlur = ({ target: { value } }: FocusEvent<HTMLInputElement>) =>
+  const _onBlur = ({ target: { value } }: FocusEvent<HTMLTextAreaElement>) =>
     onBlur(id, value)
 
-  const _onFocus = ({ target: { value } }: FocusEvent<HTMLInputElement>) =>
+  const _onFocus = ({ target: { value } }: FocusEvent<HTMLTextAreaElement>) =>
     onFocus(id, value)
 
-  const inputType = getInputType(type || schema.type)
-
-  const css: CSS = {
-    height: '$8',
-  }
-  const rows = options.rows
-  if (typeof rows === 'number' && rows > 2) {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-    css.height = `${rows * 24}px`
-  }
+  const rows = typeof options.rows === 'number' ? options.rows : 0
 
   return (
     <TextArea
       id={id}
+      css={{ height: rows > 2 ? `${rows * 24}px` : '$8', resize: 'vertical' }}
       // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-      css={css}
       placeholder={placeholder}
       required={required}
       disabled={disabled}
       readOnly={readonly}
       // eslint-disable-next-line jsx-a11y/no-autofocus
       autoFocus={autofocus}
-      type={inputType}
       // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
       value={value || value === 0 ? value : ''}
-      state={rawErrors.length > 0 ? 'invalid' : undefined}
+      error={rawErrors.length > 0}
       onChange={_onChange}
       onBlur={_onBlur}
       onFocus={_onFocus}

@@ -1,11 +1,11 @@
-import React, { FC } from 'react'
 import { utils, WidgetProps } from '@rjsf/core'
+import React, { FC } from 'react'
 import { TextWidget } from '../TextWidget'
 
 const { localToUTC, utcToLocal } = utils
 
 export const DateTimeWidget: FC<WidgetProps> = (props) => {
-  const value = utcToLocal(props.value)
+  const value = utcToLocal(props.value as string)
   const onChange = (value: string) => {
     props.onChange(localToUTC(value))
   }
@@ -14,7 +14,7 @@ export const DateTimeWidget: FC<WidgetProps> = (props) => {
     <TextWidget
       {...props}
       value={value}
-      onChange={onChange}
+      onValueChange={onChange}
       type="datetime-local"
     />
   )
