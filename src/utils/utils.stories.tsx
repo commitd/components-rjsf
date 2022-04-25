@@ -319,7 +319,7 @@ type DefaultStoryProps = Omit<FormProps<any>, 'schema'> & {
 
 export const DefaultStory: Story<DefaultStoryProps> = ({
   schema = Type.Object({
-    name: Type.String({ name: 'Name', description: 'description' }),
+    name: Type.String({ title: 'Name', description: 'description' }),
   }),
   children,
   ...args

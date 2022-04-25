@@ -77,7 +77,7 @@
     "@commitlint/config-conventional": "^16.2.1",
     "@fontsource/dosis": "^4.5.7",
     "@fontsource/inter": "^4.5.7",
-    "@sinclair/typebox": "^0.23.4",
+    "@sinclair/typebox": "0.22.1",
     "@size-limit/preset-small-lib": "^7.0.8",
     "@storybook/addon-docs": "^6.4.22",
     "@storybook/addon-essentials": "^6.4.22",
@@ -122,8 +122,7 @@
     "typescript": "4.2.2"
   },
   "dependencies": {
-    "@committed/components": "5.0.0-beta.6",
-    "@mdi/js": "5.9.55",
-    "@rjsf/core": "2.5.1"
+    "@committed/components": "^7.0.2",
+    "@rjsf/core": "^4.1.1"
   }
 }
