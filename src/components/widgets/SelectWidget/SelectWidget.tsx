@@ -13,7 +13,7 @@ const { guessType } = utils
 
 type SelectProps<C = ComponentProps<typeof Select>> = Pick<
   C,
-  Exclude<keyof C, 'onBlur' | 'onFocus' | 'defaultValue' | 'dir'>
+  Exclude<keyof C, 'onBlur' | 'onFocus' | 'defaultValue' | 'dir' | 'css'>
 >
 
 export type SelectWidgetProps = WidgetProps & SelectProps

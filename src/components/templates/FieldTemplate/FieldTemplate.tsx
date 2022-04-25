@@ -124,6 +124,7 @@ export const FieldTemplate: React.FC<FieldTemplateProps> = ({
     if (formContext?.showRequired === true) {
       return { showRequired: required, showOptional: false }
     }
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
     if (formContext?.showOptional === false) {
       return { showRequired: false, showOptional: false }
     } else {

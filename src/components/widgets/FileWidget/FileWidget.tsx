@@ -84,10 +84,8 @@ export const FileWidget: FC<WidgetProps> = (props) => {
 
   const { multiple, onChange, id, readonly, disabled, options } = props
 
-  const handleChange: ChangeEventHandler<HTMLInputElement> = async (
-    event
-  ): void => {
-    await processFiles(event.target.files).then((filesInfo) => {
+  const handleChange: ChangeEventHandler<HTMLInputElement> = (event): void => {
+    void processFiles(event.target.files).then((filesInfo) => {
       const newValues = filesInfo.map(
         (fileInfo) => fileInfo.dataURL
       ) as string[]
@@ -99,6 +97,7 @@ export const FileWidget: FC<WidgetProps> = (props) => {
         onChange(newValues[0])
       }
     })
+    return
   }
 
   const handleClick: MouseEventHandler<HTMLButtonElement> = () => {
