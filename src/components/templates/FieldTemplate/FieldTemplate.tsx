@@ -1,13 +1,12 @@
 import {
   Box,
-  FormControl as FormControlTemp,
+  FormControl,
   FormControlHelp,
   Input,
   Label,
   LabelOptional,
   Monospace,
   Row,
-  styled,
 } from '@committed/components'
 import { FieldTemplateProps, utils } from '@rjsf/core'
 import { JSONSchema7 } from 'json-schema'
@@ -15,9 +14,6 @@ import React, { useMemo } from 'react'
 import { IconButton, REQUIRED_FIELD_SYMBOL } from '../../../utils'
 
 const { ADDITIONAL_PROPERTY_FLAG } = utils
-
-/* FIXME should be able to remove this css https://github.com/commitd/components/issues/267*/
-const FormControl = styled(FormControlTemp, { display: 'flex' })
 
 const FieldLabel: React.FC<{
   id: string

@@ -84,23 +84,23 @@ export const FileWidget: FC<WidgetProps> = (props) => {
 
   const { multiple, onChange, id, readonly, disabled, options } = props
 
-  const handleChange: ChangeEventHandler<HTMLInputElement> = (event): void => {
-    void processFiles(event.target.files).then((filesInfo) => {
-      const newValues = filesInfo.map(
-        (fileInfo) => fileInfo.dataURL
-      ) as string[]
-      setFilesInfo(filesInfo)
+  const processChange = (filesInfo: FileData[]) => {
+    const newValues = filesInfo.map((fileInfo) => fileInfo.dataURL) as string[]
+    setFilesInfo(filesInfo)
 
-      if (multiple) {
-        onChange(newValues)
-      } else {
-        onChange(newValues[0])
-      }
-    })
-    return
+    if (multiple) {
+      return newValues
+    } else {
+      return newValues[0]
+    }
   }
 
-  const handleClick: MouseEventHandler<HTMLButtonElement> = () => {
+  const handleChange: ChangeEventHandler<HTMLInputElement> = (event): void => {
+    void processFiles(event.target.files).then(processChange).then(onChange)
+  }
+
+  const handleClick: MouseEventHandler<HTMLButtonElement> = (e) => {
+    e.preventDefault()
     hiddenFileInput?.current?.click()
   }
 

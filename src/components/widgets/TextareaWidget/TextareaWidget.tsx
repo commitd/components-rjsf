@@ -24,13 +24,13 @@ export const TextareaWidget: FC<TextareaWidgetProps> = ({
   rawErrors = [],
   // Extract and ignore these props
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  schema,
+  schema: _schema,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  uiSchema,
+  uiSchema: _uiSchema,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  label,
+  label: _label,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  formContext,
+  formContext: _formContext,
   ...textFieldProps
 }: TextareaWidgetProps) => {
   const _onChange = ({ target: { value } }: ChangeEvent<HTMLTextAreaElement>) =>

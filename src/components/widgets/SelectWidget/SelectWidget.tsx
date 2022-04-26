@@ -57,7 +57,7 @@ const processValue = (schema: JSONSchema7, value: unknown) => {
 
 type OptionsArray = Array<{ value: any; label: string }>
 
-function getValue(schema: JSONSchema7, value: unknown) {
+function getValue(_schema: JSONSchema7, value: unknown) {
   if (Array.isArray(value)) {
     return value[0]
   }
@@ -99,8 +99,8 @@ export const SelectWidget: FC<SelectWidgetProps> = ({
   // So we force one on first render if none is provided
   useLayoutEffect(() => {
     if (Array.isArray(enumOptions) && isEmptyValue(schema, value)) {
-      for (let i = 0; i < enumOptions.length; i++) {
-        const { value: possible } = enumOptions[i]
+      for (const option of enumOptions) {
+        const { value: possible } = option
         if (((enumDisabled || []) as any[]).indexOf(value) === -1) {
           onChange(processValue(schema, possible))
           break
@@ -122,8 +122,6 @@ export const SelectWidget: FC<SelectWidgetProps> = ({
   return (
     <Select
       id={id}
-      // FIXME placeholder is not supported by Select
-      //placeholder={placeholder}
       required={required}
       disabled={disabled || readonly}
       value={selectValue}

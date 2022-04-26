@@ -38,8 +38,6 @@ export const RangeWidget: FC<WidgetProps> = ({
       onValueChange={_onChange}
       onBlur={_onBlur}
       onFocus={_onFocus}
-      // eslint-disable-next-line jsx-a11y/no-autofocus
-      // FIXME autoFocus={autofocus}
       {...sliderProps}
     />
   )

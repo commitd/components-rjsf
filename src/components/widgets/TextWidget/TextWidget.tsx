@@ -5,7 +5,7 @@ const { rangeSpec } = utils
 
 type InputProps<C = ComponentProps<typeof Input>> = Pick<
   C,
-  Exclude<keyof C, 'onBlur' | 'onFocus' | 'css'>
+  Exclude<keyof C, 'onChange' | 'onBlur' | 'onFocus' | 'css'>
 >
 
 export type TextWidgetProps = WidgetProps & InputProps
@@ -42,11 +42,11 @@ export const TextWidget: FC<TextWidgetProps> = ({
   rawErrors = [],
   // Extract and ignore these props
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  label,
+  label: _label,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  uiSchema,
+  uiSchema: _uiSchema,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  formContext,
+  formContext: _formContext,
   ...textFieldProps
 }: TextWidgetProps) => {
   const _onChange = ({ target: { value } }: ChangeEvent<HTMLInputElement>) =>
