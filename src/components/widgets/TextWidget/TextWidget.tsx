@@ -3,19 +3,26 @@ import { utils, WidgetProps } from '@rjsf/core'
 import React, { ChangeEvent, ComponentProps, FC, FocusEvent } from 'react'
 const { rangeSpec } = utils
 
-type InputProps = ComponentProps<typeof Input>
+type InputProps<C = ComponentProps<typeof Input>> = Pick<
+  C,
+  Exclude<keyof C, 'onChange' | 'onBlur' | 'onFocus' | 'css'>
+>
 
-export type TextWidgetProps = WidgetProps &
-  Pick<InputProps, Exclude<keyof InputProps, 'onBlur' | 'onFocus'>>
+export type TextWidgetProps = WidgetProps & InputProps
 
-function getInputType(baseType: string) {
+function getInputType(
+  baseType: string | string[]
+): React.HTMLInputTypeAttribute {
+  if (Array.isArray(baseType)) {
+    return getInputType(baseType[0])
+  }
   if (baseType === 'string') {
     return 'text'
   }
   if (baseType === 'integer') {
     return 'number'
   }
-  return baseType
+  return baseType as React.HTMLInputTypeAttribute
 }
 
 export const TextWidget: FC<TextWidgetProps> = ({
@@ -35,11 +42,11 @@ export const TextWidget: FC<TextWidgetProps> = ({
   rawErrors = [],
   // Extract and ignore these props
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  label,
+  label: _label,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  uiSchema,
+  uiSchema: _uiSchema,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  formContext,
+  formContext: _formContext,
   ...textFieldProps
 }: TextWidgetProps) => {
   const _onChange = ({ target: { value } }: ChangeEvent<HTMLInputElement>) =>
@@ -51,7 +58,7 @@ export const TextWidget: FC<TextWidgetProps> = ({
   const _onFocus = ({ target: { value } }: FocusEvent<HTMLInputElement>) =>
     onFocus(id, value)
 
-  const inputType = getInputType(type || schema.type)
+  const inputType = getInputType(type ?? schema.type ?? 'string')
 
   const rangeProps = inputType === 'number' ? { ...rangeSpec(schema) } : {}
 
@@ -67,7 +74,7 @@ export const TextWidget: FC<TextWidgetProps> = ({
       type={inputType}
       // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
       value={value || value === 0 ? value : ''}
-      state={rawErrors.length > 0 ? 'invalid' : undefined}
+      error={rawErrors.length > 0}
       onChange={_onChange}
       onBlur={_onBlur}
       onFocus={_onFocus}

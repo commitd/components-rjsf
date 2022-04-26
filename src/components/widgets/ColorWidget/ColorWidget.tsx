@@ -1,4 +1,4 @@
-import { Box, Button, Column, Row } from '@committed/components'
+import { Button, Flex, Row } from '@committed/components'
 import { WidgetProps } from '@rjsf/core'
 import React, { ChangeEventHandler, FC, MouseEventHandler, useRef } from 'react'
 
@@ -20,9 +20,9 @@ export const ColorWidget: FC<WidgetProps> = (props) => {
   }
 
   return (
-    <Column css={{ py: '$3', gap: '$2' }}>
-      <Row css={{ gap: '$3' }}>
-        <Box
+    <>
+      <Row gap>
+        <Flex
           css={{
             cursor: isDisabled ? 'auto' : 'pointer',
             flexGrow: 1,
@@ -30,8 +30,9 @@ export const ColorWidget: FC<WidgetProps> = (props) => {
             border: '1px solid',
             backgroundColor: (value || 'transparent') as string,
           }}
+          centered
           onClick={handleClick}
-        />
+        ></Flex>
         <Button disabled={isDisabled} onClick={handleClick}>
           Choose Color
         </Button>
@@ -45,6 +46,6 @@ export const ColorWidget: FC<WidgetProps> = (props) => {
         onChange={handleChange}
         style={{ display: 'none' }}
       />
-    </Column>
+    </>
   )
 }

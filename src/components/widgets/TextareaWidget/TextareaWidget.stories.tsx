@@ -15,8 +15,20 @@ Default.args = {
   uiSchema: {
     textarea: {
       'ui:widget': 'textarea',
+    },
+  },
+}
+
+export const ManyRows = DefaultStory.bind({})
+ManyRows.args = {
+  schema: Type.Object({
+    textarea: Type.String({ title: 'Textarea', description: 'description' }),
+  }),
+  uiSchema: {
+    textarea: {
+      'ui:widget': 'textarea',
       'ui:options': {
-        rows: 5,
+        rows: 50,
       },
     },
   },

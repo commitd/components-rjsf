@@ -1,3 +1,4 @@
+import { Type } from '@sinclair/typebox'
 import { Meta } from '@storybook/react'
 import { argTypes, DefaultStory } from '../../../utils/utils.stories'
 
@@ -25,6 +26,7 @@ Default.args = {
             format: 'uri',
           },
         },
+        required: ['email'],
       },
       boolean: {
         type: 'object',
@@ -102,6 +104,7 @@ Default.args = {
         enumNames: ['Foo', 'Bar'],
       },
     },
+    required: ['stringFormats', 'string', 'secret', 'selectWidgetOptions'],
   },
   uiSchema: {
     boolean: {
@@ -207,4 +210,56 @@ WithErrors.args = {
     },
   },
   showErrorList: true,
+}
+
+const requiredExampleSchema = Type.Object({
+  required: Type.String({
+    title: 'Required',
+    description: 'This is marked as required by the schema.',
+  }),
+  optional: Type.Optional(
+    Type.String({
+      title: 'Optional',
+      description: 'This is not marked as required in the schema.',
+    })
+  ),
+})
+
+export const DefaultLabels = DefaultStory.bind({})
+DefaultLabels.args = {
+  schema: requiredExampleSchema,
+}
+DefaultLabels.parameters = {
+  docs: {
+    storyDescription:
+      'By default labels not marked as required are shown as optional. This is considered best practice.',
+  },
+}
+
+export const RequiredLabels = DefaultStory.bind({})
+RequiredLabels.args = {
+  schema: requiredExampleSchema,
+  formContext: {
+    showRequired: true,
+  },
+}
+RequiredLabels.parameters = {
+  docs: {
+    storyDescription:
+      'Add `showRequired: true` to the `formContext` to, instead, mark required labels with an asterisk. This is no longer considered good practice.',
+  },
+}
+
+export const NoOptionalLabels = DefaultStory.bind({})
+NoOptionalLabels.args = {
+  schema: requiredExampleSchema,
+  formContext: {
+    showOptional: false,
+  },
+}
+NoOptionalLabels.parameters = {
+  docs: {
+    storyDescription:
+      'Add `showOptional: false` th the `formContext` to remove the optional markers.',
+  },
 }

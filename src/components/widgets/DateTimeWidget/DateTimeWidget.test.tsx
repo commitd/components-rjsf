@@ -1,5 +1,5 @@
 import React from 'react'
-import { renderLight, renderDark } from '../../../utils/test-utils'
+import { renderDark, renderLight } from '../../../utils/test-utils'
 import { Default } from './DateTimeWidget.stories'
 
 it('renders light without error', () => {

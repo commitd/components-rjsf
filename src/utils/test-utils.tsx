@@ -5,12 +5,12 @@
  * N.B. This adds a simple custom id generator so ids match between snapshots.
  *
  */
+import { ThemeProvider } from '@committed/components'
 import '@testing-library/jest-dom'
 import '@testing-library/jest-dom/extend-expect'
 import { render, RenderOptions, RenderResult } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import React from 'react'
-import { ThemeProvider } from '@committed/components'
 import ResizeObserver from 'resize-observer-polyfill'
 
 // Use the polyfill for the ResizeObserver.

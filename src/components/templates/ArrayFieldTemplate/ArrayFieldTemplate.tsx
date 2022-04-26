@@ -1,14 +1,13 @@
-import { Box, Column, Divider, Row, styled } from '@committed/components'
+import { Box, Divider, Row, styled } from '@committed/components'
 import { ArrayFieldTemplateProps, IdSchema, utils } from '@rjsf/core'
 import React from 'react'
-import { IconButton } from '../../../utils'
+import { Fieldset, IconButton } from '../../../utils'
 
 const { isMultiSelect, getDefaultRegistry } = utils
 
 const ArrayDivider = styled(Divider, {
-  width: '100% !important',
+  width: '100%',
   mt: '0 !important',
-  backgroundColor: '$grey5 !important',
 })
 
 type ArrayFieldTitleProps = {
@@ -78,37 +77,35 @@ const DefaultArrayItem: React.FC<
   onDropIndexClick,
 }) => {
   return (
-    <Row key={key} css={{ gap: '$2', mb: '$2', justifyContent: 'center' }}>
-      <Column style={{ overflow: 'auto', flex: '1' }}>
-        <Box>{children}</Box>
-      </Column>
-
+    <Row key={key} css={{ gap: '$2' }}>
+      <Box variant="grow">{children}</Box>
       {hasToolbar && (
-        <Row css={{ alignItems: 'center' }}>
+        <Row css={{ alignItems: 'end' }}>
           {(hasMoveUp || hasMoveDown) && (
             <IconButton
               icon="arrow-up"
-              tabIndex={-1}
               disabled={disabled || readonly || !hasMoveUp}
               onClick={onReorderClick(index, index - 1)}
+              aria-label="Move up"
             />
           )}
 
           {(hasMoveUp || hasMoveDown) && (
             <IconButton
               icon="arrow-down"
-              tabIndex={-1}
               disabled={disabled || readonly || !hasMoveDown}
               onClick={onReorderClick(index, index + 1)}
+              aria-label="Move down"
             />
           )}
 
           {hasRemove && (
             <IconButton
               icon="remove"
-              tabIndex={-1}
+              destructive
               disabled={disabled || readonly}
               onClick={onDropIndexClick(index)}
+              aria-label="Remove"
             />
           )}
         </Row>
@@ -133,43 +130,41 @@ const DefaultFixedArrayFieldTemplate: React.FC<ArrayFieldTemplateProps> = ({
 }) => {
   return (
     <>
-      <Column as="fieldset">
-        <Row css={{ gap: '$2' }}>
-          <ArrayFieldTitle
-            key={`array-field-title-${idSchema.$id}`}
-            TitleField={TitleField}
-            idSchema={idSchema}
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-            title={uiSchema['ui:title'] || title}
-            required={required}
-          />
-          {(uiSchema['ui:description'] || schema.description) && (
-            <ArrayFieldDescription
-              key={`array-field-description-${idSchema.$id}`}
-              DescriptionField={DescriptionField}
+      <Fieldset>
+        <div>
+          <Row gap>
+            <ArrayFieldTitle
+              key={`array-field-title-${idSchema.$id}`}
+              TitleField={TitleField}
               idSchema={idSchema}
               // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-              description={uiSchema['ui:description'] || schema.description}
+              title={uiSchema['ui:title'] || title}
+              required={required}
             />
-          )}
+            {(uiSchema['ui:description'] || schema.description) && (
+              <ArrayFieldDescription
+                key={`array-field-description-${idSchema.$id}`}
+                DescriptionField={DescriptionField}
+                idSchema={idSchema}
+                // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+                description={uiSchema['ui:description'] || schema.description}
+              />
+            )}
+          </Row>
           <ArrayDivider />
-        </Row>
-
-        <div
-          className="row array-item-list"
-          key={`array-item-list-${idSchema.$id}`}
-        >
-          {items && items.map(DefaultArrayItem)}
         </div>
+
+        {items && items.map(DefaultArrayItem)}
 
         {canAdd && (
           <IconButton
             icon="plus"
             onClick={onAddClick}
             disabled={disabled || readonly}
+            aria-label="Add"
           />
         )}
-      </Column>
+      </Fieldset>
     </>
   )
 }
@@ -189,11 +184,11 @@ const DefaultNormalArrayFieldTemplate: React.FC<ArrayFieldTemplateProps> = ({
   onAddClick,
 }) => {
   return (
-    <>
-      <Column as="fieldset">
-        <Row css={{ gap: '$2' }}>
+    <Fieldset>
+      <div>
+        <Row gap>
           <ArrayFieldTitle
-            key={`array-field-title-${idSchema.$id}`}
+            // key={`array-field-title-${idSchema.$id}`}
             TitleField={TitleField}
             idSchema={idSchema}
             // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
@@ -202,7 +197,7 @@ const DefaultNormalArrayFieldTemplate: React.FC<ArrayFieldTemplateProps> = ({
           />
           {(uiSchema['ui:description'] || schema.description) && (
             <ArrayFieldDescription
-              key={`array-field-description-${idSchema.$id}`}
+              // key={`array-field-description-${idSchema.$id}`}
               DescriptionField={DescriptionField}
               idSchema={idSchema}
               // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
@@ -211,21 +206,21 @@ const DefaultNormalArrayFieldTemplate: React.FC<ArrayFieldTemplateProps> = ({
           )}
         </Row>
         <ArrayDivider />
-        <Column key={`array-item-list-${idSchema.$id}`}>
-          {items && items.map((p) => DefaultArrayItem(p))}
+      </div>
 
-          {canAdd && (
-            <Row css={{ justifyContent: 'flex-end' }}>
-              <IconButton
-                icon="plus"
-                onClick={onAddClick}
-                disabled={disabled || readonly}
-              />
-            </Row>
-          )}
-        </Column>
-      </Column>
-    </>
+      {items && items.map((p) => DefaultArrayItem(p))}
+
+      {canAdd && (
+        <Row css={{ justifyContent: 'flex-end' }}>
+          <IconButton
+            icon="plus"
+            onClick={onAddClick}
+            disabled={disabled || readonly}
+            aria-label="Add"
+          />
+        </Row>
+      )}
+    </Fieldset>
   )
 }
 
@@ -235,7 +230,7 @@ export const ArrayFieldTemplate: React.FC<ArrayFieldTemplateProps> = (
   const { schema, registry = getDefaultRegistry() } = props
 
   // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access,@typescript-eslint/no-explicit-any
-  if (isMultiSelect(schema, (registry as any).rootSchema)) {
+  if (isMultiSelect(schema, registry.rootSchema)) {
     return <DefaultFixedArrayFieldTemplate {...props} />
   } else {
     return <DefaultNormalArrayFieldTemplate {...props} />

@@ -44,7 +44,7 @@ export const Integer = DefaultStory.bind({})
 Integer.args = {
   schema: Type.Object({
     integer: Type.Integer({
-      title: 'Number',
+      title: 'Integer',
       description: 'description',
     }),
   }),
@@ -63,7 +63,7 @@ export const WithoutUISchema = DefaultStory.bind({})
 WithoutUISchema.args = {
   schema: Type.Object({
     integer: Type.Integer({
-      title: 'Number',
+      title: 'Integer',
       description: 'description',
       minimum: 0,
       maximum: 10,

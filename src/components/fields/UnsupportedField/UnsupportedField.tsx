@@ -1,39 +1,48 @@
-import { Card, Monospace, Paragraph, Text } from '@committed/components'
+import {
+  Card,
+  Column,
+  Monospace,
+  Paragraph,
+  styled,
+  Text,
+} from '@committed/components'
 import { FieldProps } from '@rjsf/core'
 import React, { FC } from 'react'
+
+const ErrorId = styled(Monospace, {
+  background: '$background',
+  color: '$error',
+})
+
+const ErrorJson = styled(Card, {
+  width: '100%',
+  backgroundColor: '$background',
+  p: '$3',
+
+  defaultVariants: {
+    variant: 'outline',
+  },
+})
 
 export const UnsupportedField: FC<FieldProps> = ({
   schema,
   idSchema,
   reason,
 }) => (
-  <div className="unsupported-field">
+  <Column>
     <Paragraph>
       Unsupported field schema
       {idSchema && idSchema.$id && (
         <span>
-          {' for'} field{' '}
-          <Monospace
-            as="span"
-            css={{ background: '$background', color: '$error' }}
-          >
-            {idSchema.$id}
-          </Monospace>
+          {' for'} field <ErrorId inline>{idSchema.$id}</ErrorId>
         </span>
       )}
       {reason && <Text italic>: {reason}</Text>}.
     </Paragraph>
     {schema && (
-      <Card
-        css={{
-          width: '100%',
-          backgroundColor: '$background',
-          p: '$3',
-        }}
-        variant="outline"
-      >
+      <ErrorJson>
         <Monospace>{JSON.stringify(schema, null, 2)}</Monospace>
-      </Card>
+      </ErrorJson>
     )}
-  </div>
+  </Column>
 )

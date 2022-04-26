@@ -1,41 +1,53 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the README at:
+// https://github.com/microsoft/vscode-dev-containers/tree/v0.231.6/containers/typescript-node
 {
-	"name": "committed-component-devcontainer",
-	"runArgs": ["--init", "--privileged"],
-	"overrideCommand": false,
+	"name": "Node.js & TypeScript",
 	"build": {
-	  "dockerfile": "Dockerfile",
-	  "args": {
-		"VARIANT": "14"
-	  }
-	},
-	"settings": {
-	  // Default to ZSH
-	  "terminal.integrated.shell.linux": "/bin/bash",
-	  "terminal.integrated.shell.osx": "/usr/bin/zsh",
-	  // Setup formatting to save with prettier
-	  "editor.formatOnSave": true,
-	  "editor.defaultFormatter": "esbenp.prettier-vscode",
-	  // Look throughout the project to auto set up eslint
-	  "eslint.workingDirectories": [
-		{
-		  "mode": "auto"
+		"dockerfile": "Dockerfile",
+		"args": { 
+			"VARIANT": "16-bullseye"
 		}
-	  ],
-	  // Our eslint can be very heavy, so we perform it on save not on type
-	  "eslint.run": "onSave",
-	  // Ignore uncommon words
-	  "cSpell.userWords": ["commitd"],
-	  // Prefer relative imports
-	  "typescript.preferences.importModuleSpecifier": "relative"
 	},
+
+	"settings": {
+		// Default to ZSH
+		"terminal.integrated.profiles.linux": {
+		"zsh": {
+			"path": "/bin/zsh"
+		}
+		},
+		"terminal.integrated.defaultProfile.linux": "zsh",
+		"editor.formatOnSave": true,
+		"editor.defaultFormatter": "esbenp.prettier-vscode",
+		"eslint.workingDirectories": [
+		{
+			"mode": "auto"
+		}
+		],
+		"eslint.run": "onSave",
+		"cSpell.userWords": ["commitd"],
+		"typescript.preferences.importModuleSpecifier": "relative"
+	},
+
+
 	"extensions": [
-	  "dbaeumer.vscode-eslint",
-	  "esbenp.prettier-vscode",
-	  "github.vscode-pull-request-github",
-	  "ms-vsliveshare.vsliveshare",
-	  "eamodio.gitlens",
-	  "streetsidesoftware.code-spell-checker"
+		"dbaeumer.vscode-eslint",
+		"esbenp.prettier-vscode",
+		"github.vscode-pull-request-github",
+		"ms-vsliveshare.vsliveshare",
+		"eamodio.gitlens",
+		"streetsidesoftware.code-spell-checker",
+		"sonarsource.sonarlint-vscode",
+		"github.copilot",
+		"bierner.markdown-preview-github-styles",
+		"me-dutour-mathieu.vscode-github-actions",
+		"christian-kohler.npm-intellisense",
+		"eg2.vscode-npm-script"
 	],
-	"remoteUser": "node"
-  }
-  
+
+	"remoteUser": "node",
+	"features": {
+		"git": "latest",
+		"github-cli": "latest"
+	}
+}

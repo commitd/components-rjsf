@@ -1,20 +1,24 @@
-import React, { FC } from 'react'
 import { utils, WidgetProps } from '@rjsf/core'
+import React, { FC, useCallback } from 'react'
 import { TextWidget } from '../TextWidget'
 
 const { localToUTC, utcToLocal } = utils
 
-export const DateTimeWidget: FC<WidgetProps> = (props) => {
-  const value = utcToLocal(props.value)
-  const onChange = (value: string) => {
-    props.onChange(localToUTC(value))
-  }
+export const DateTimeWidget: FC<WidgetProps> = ({ onChange, ...props }) => {
+  const value = utcToLocal(props.value as string)
+
+  const onValueChange = useCallback(
+    (value: string) => {
+      onChange(localToUTC(value))
+    },
+    [onChange]
+  )
 
   return (
     <TextWidget
       {...props}
       value={value}
-      onChange={onChange}
+      onChange={onValueChange}
       type="datetime-local"
     />
   )

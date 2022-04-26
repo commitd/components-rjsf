@@ -1,6 +1,6 @@
 import { Type } from '@sinclair/typebox'
 import { Meta } from '@storybook/react'
-import { DefaultStory, argTypes } from '../../../utils/utils.stories'
+import { argTypes, DefaultStory } from '../../../utils/utils.stories'
 
 export default {
   title: 'Widgets/CheckboxWidget',
@@ -22,6 +22,7 @@ Required.args = {
     checkbox: Type.Boolean({
       title: 'Checkbox',
       description: 'description',
+      const: true,
     }),
   }),
 }

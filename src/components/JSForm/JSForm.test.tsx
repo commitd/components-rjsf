@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/no-unsafe-return */
-import React from 'react'
 import { Type } from '@sinclair/typebox'
+import React from 'react'
 import {
-  renderLight,
   renderDark,
+  renderLight,
   screen,
   userEvent,
 } from '../../utils/test-utils'

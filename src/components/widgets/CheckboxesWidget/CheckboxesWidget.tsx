@@ -19,10 +19,10 @@ export const CheckboxesWidget: FC<WidgetProps> = ({
   options,
   value,
   readonly,
-  required,
   onChange,
   onBlur,
   onFocus,
+  rawErrors = [],
   autofocus,
 }) => {
   const { enumOptions, enumDisabled, inline } = options
@@ -35,9 +35,9 @@ export const CheckboxesWidget: FC<WidgetProps> = ({
     const all = enumOptions.map(({ value }) => value)
 
     if (checked) {
-      onChange(selectValue(option.value, value, all))
+      onChange(selectValue(option.value, value as string[], all))
     } else {
-      onChange(deselectValue(option.value, value))
+      onChange(deselectValue(option.value, value as string[]))
     }
   }
 
@@ -69,7 +69,7 @@ export const CheckboxesWidget: FC<WidgetProps> = ({
             onCheckedChange={_onChange(option)}
             onBlur={_onBlur}
             onFocus={_onFocus}
-            required={required}
+            error={rawErrors.length > 0}
             // eslint-disable-next-line jsx-a11y/no-autofocus
             autoFocus={autofocus}
           />

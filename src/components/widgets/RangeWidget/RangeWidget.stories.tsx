@@ -10,7 +10,7 @@ export default {
 export const Default = DefaultStory.bind({})
 Default.args = {
   schema: Type.Object({
-    range: Type.Number({ title: 'Checkbox', description: 'description' }),
+    range: Type.Number({ title: 'Range', description: 'description' }),
   }),
   uiSchema: {
     range: {
@@ -24,7 +24,7 @@ export const Constraints = DefaultStory.bind({})
 Constraints.args = {
   schema: Type.Object({
     range: Type.Number({
-      title: 'Checkbox',
+      title: 'Range',
       description: 'description',
       minimum: 20,
       maximum: 80,

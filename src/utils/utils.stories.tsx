@@ -1,7 +1,7 @@
 import {
   Dialog,
   DialogContent,
-  Heading,
+  DialogTitle,
   Monospace,
 } from '@committed/components'
 import { useBoolean } from '@committed/hooks'
@@ -319,7 +319,7 @@ type DefaultStoryProps = Omit<FormProps<any>, 'schema'> & {
 
 export const DefaultStory: Story<DefaultStoryProps> = ({
   schema = Type.Object({
-    name: Type.String({ name: 'Name', description: 'description' }),
+    name: Type.String({ title: 'Name', description: 'description' }),
   }),
   children,
   ...args
@@ -337,9 +337,10 @@ export const DefaultStory: Story<DefaultStoryProps> = ({
         }}
         {...args}
       />
+      {children}
       <Dialog open={isOpen} onOpenChange={setFalse}>
         <DialogContent>
-          <Heading variant="h5">Form Data</Heading>
+          <DialogTitle>Form Data</DialogTitle>
           <Monospace css={{ mt: '$3' }}>
             {JSON.stringify(formData, null, 2)}
           </Monospace>

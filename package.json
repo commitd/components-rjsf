@@ -1,5 +1,5 @@
 {
-  "version": "0.1.0-beta.2",
+  "version": "0.0.0-development",
   "name": "@committed/components-rjsf",
   "description": "Committed Components React Json Schema Forms Library",
   "author": "Committed",
@@ -20,21 +20,23 @@
     "node": ">=10"
   },
   "scripts": {
-    "postinstall": "rimraf node_modules/@emotion/core/types",
-    "build": "rollpkg build --tsconfig ./tsconfig.build.json",
-    "watch": "rollpkg watch",
+    "clean": "rimraf dist",
+    "build": "npm run clean && node build.js && tsc --project tsconfig.build.json",
     "prepublishOnly": "npm run lint && npm test && npm run build",
-    "lint": "eslint './src/**/*.{ts,tsx}'",
+    "lint": "tsc --noEmit && eslint './src/**/*.{ts,tsx}'",
     "test": "jest",
-    "test:ci": "jest --coverage",
     "test:watch": "jest --watchAll",
     "coverage": "npx live-server coverage/lcov-report",
+    "commit": "cz",
     "size": "size-limit",
     "analyze": "size-limit --why",
-    "storybook": "start-storybook -p 6006",
+    "storybook": "start-storybook -p 6006 -h 0.0.0.0",
     "build-storybook": "build-storybook",
     "format": "prettier --write 'src/**/{*.js,*.ts,*.tsx,*.json,*.md,*.mdx}'",
-    "deploy-storybook": "storybook-to-ghpages"
+    "format:check": "prettier --check '**/{src,test,stories}/**/{*.js,*.ts,*.tsx,*.json,*.md,*.mdx}'",
+    "deploy-storybook": "storybook-to-ghpages",
+    "prepare": "husky install",
+    "semantic-release": "semantic-release"
   },
   "peerDependencies": {
     "react": "^16.8.0 || ^17.0.0"
@@ -53,105 +55,74 @@
       "limit": "200 KB"
     }
   ],
-  "eslintConfig": {
-    "extends": [
-      "./node_modules/rollpkg/configs/eslint"
-    ],
-    "plugins": [
-      "import"
-    ],
-    "parser": "@typescript-eslint/parser",
-    "settings": {
-      "import/parsers": {
-        "@typescript-eslint/parser": [
-          ".ts",
-          ".tsx"
-        ]
-      },
-      "import/resolver": {
-        "typescript": {
-          "alwaysTryTypes": true
-        }
-      }
-    },
-    "rules": {
-      "import/default": "off",
-      "import/no-default-export": "off",
-      "react/display-name": "off",
-      "import/no-named-as-default-member": "warn"
-    },
-    "ignorePatterns": [
-      "dist",
-      "node_modules",
-      "docs",
-      "**/*.stories.tsx",
-      "**/*.test.ts"
+  "lint-staged": {
+    "*.{ts,tsx,md,json,mdx}": "prettier --write",
+    "*.{ts,tsx}": [
+      "eslint --cache --fix",
+      "jest --bail --findRelatedTests"
     ]
   },
-  "jest": {
-    "preset": "rollpkg",
-    "setupFiles": [
-      "./jest.patch-cssom.js"
-    ],
-    "snapshotSerializers": [
-      "jest-stitches"
-    ],
-    "collectCoverage": true,
-    "testResultsProcessor": "jest-sonar-reporter",
-    "moduleDirectories": [
-      "node_modules",
-      "utils"
-    ],
-    "testRegex": "/src/.*(\\.|/)(test|spec)\\.[jt]sx?$",
-    "collectCoverageFrom": [
-      "src/**/*.{ts,tsx}",
-      "!src/types/**/*"
-    ],
-    "coveragePathIgnorePatterns": [
-      "/src/typings.d.ts",
-      "setupTests.tsx",
-      ".*/index.ts",
-      ".*.test.ts",
-      ".*.stories.tsx"
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
     ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   },
   "devDependencies": {
-    "@fontsource/dosis": "^4.3.0",
-    "@fontsource/inter": "^4.3.0",
-    "@sinclair/typebox": "^0.16.7",
-    "@size-limit/preset-small-lib": "^4.6.2",
-    "@storybook/addon-docs": "^6.2.8",
-    "@storybook/addon-essentials": "^6.2.8",
-    "@storybook/react": "^6.2.8",
-    "@storybook/storybook-deployer": "^2.8.7",
-    "@storybook/theming": "^6.2.8",
-    "@testing-library/jest-dom": "^5.12.0",
-    "@testing-library/react": "^11.2.6",
-    "@testing-library/user-event": "^13.1.5",
-    "@types/react": "^17.0.0",
-    "@types/react-dom": "^17.0.0",
+    "@commitlint/cli": "^16.2.3",
+    "@commitlint/config-conventional": "^16.2.1",
+    "@fontsource/dosis": "^4.5.7",
+    "@fontsource/inter": "^4.5.7",
+    "@sinclair/typebox": "0.22.1",
+    "@size-limit/preset-small-lib": "^7.0.8",
+    "@storybook/addon-docs": "^6.4.22",
+    "@storybook/addon-essentials": "^6.4.22",
+    "@storybook/react": "^6.4.22",
+    "@storybook/storybook-deployer": "^2.8.11",
+    "@storybook/testing-react": "^1.2.4",
+    "@testing-library/jest-dom": "^5.16.4",
+    "@testing-library/react": "^12.0.0",
+    "@testing-library/user-event": "^13.5.0",
+    "@types/react": "^17.0.43",
+    "@types/react-dom": "^17.0.14",
+    "@typescript-eslint/eslint-plugin": "^5.20.0",
+    "@typescript-eslint/parser": "^5.20.0",
+    "commitizen": "^4.2.4",
+    "cz-conventional-changelog": "^3.3.0",
+    "esbuild": "^0.14.37",
+    "eslint": "^7.29.0",
+    "eslint-config-prettier": "^8.1.0",
     "eslint-import-resolver-typescript": "^2.4.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jest": "^24.3.4",
+    "eslint-plugin-jest-dom": "^3.7.0",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-react": "^7.23.1",
     "eslint-plugin-react-hooks": "^4.2.0",
-    "husky": "^6.0.0",
-    "jest": "^26.6.3",
+    "eslint-plugin-storybook": "^0.5.10",
+    "husky": "^7.0.4",
+    "jest": "^27.5.1",
     "jest-sonar-reporter": "^2.0.0",
     "jest-stitches": "^1.0.4",
-    "jest-watch-typeahead": "^0.6.3",
-    "pretty-quick": "^2.0.1",
+    "prettier-plugin-organize-imports": "^2.3.4",
+    "pretty-quick": "^3.1.3",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-is": "^17.0.2",
     "resize-observer-polyfill": "^1.5.1",
-    "rollpkg": "^0.5.6",
-    "size-limit": "^4.10.2",
+    "semantic-release": "^19.0.2",
+    "size-limit": "^7.0.8",
     "story-description-loader": "^1.0.0",
-    "storybook-dark-mode": "^1.0.7",
-    "tsconfig-paths-webpack-plugin": "^3.5.1",
+    "storybook-dark-mode": "^1.0.9",
+    "ts-jest": "^27.1.4",
+    "tsconfig-paths-webpack-plugin": "^3.5.2",
     "typescript": "4.2.2"
   },
   "dependencies": {
-    "@committed/components": "^5.0.0-beta.6",
-    "@mdi/js": "^5.9.55",
-    "@rjsf/core": "^2.5.1"
+    "@committed/components": "^7.0.2",
+    "@rjsf/core": "^4.1.1"
   }
 }

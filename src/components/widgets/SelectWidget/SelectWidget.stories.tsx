@@ -37,3 +37,61 @@ WithTitle.args = {
     required: ['browser'],
   },
 }
+
+export const WithBoolean = DefaultStory.bind({})
+WithBoolean.args = {
+  schema: {
+    title: 'Booleans',
+    description: 'A boolean select.',
+    type: 'object',
+    properties: {
+      boolean: {
+        type: 'boolean',
+        title: 'select box',
+        description: 'This is the select-description',
+      },
+    },
+  },
+  uiSchema: {
+    boolean: {
+      'ui:widget': 'select',
+    },
+  },
+}
+
+export const WithArray = DefaultStory.bind({})
+WithArray.args = {
+  schema: {
+    title: 'Cannot multiple select',
+    description:
+      'Selects are limited to a single value. For multi select use checkboxes.',
+    type: 'object',
+    properties: {
+      select: {
+        items: {
+          enum: ['foo', 'bar', 'fuzz'],
+          type: 'string',
+        },
+        maxItems: 2,
+        title: 'Can only select one value',
+        type: 'array',
+        uniqueItems: true,
+      },
+      checkboxes: {
+        items: {
+          enum: ['foo', 'bar', 'fuzz'],
+          type: 'string',
+        },
+        maxItems: 2,
+        title: 'Pick max two items',
+        type: 'array',
+        uniqueItems: true,
+      },
+    },
+  },
+  uiSchema: {
+    checkboxes: {
+      'ui:widget': 'checkboxes',
+    },
+  },
+}

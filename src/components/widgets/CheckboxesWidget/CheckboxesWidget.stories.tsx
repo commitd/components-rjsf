@@ -39,4 +39,5 @@ Inline.args = {
       inline: true,
     },
   },
+  formData: [],
 }

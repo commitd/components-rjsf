@@ -11,7 +11,6 @@ export const RangeWidget: FC<WidgetProps> = ({
   disabled,
   readonly,
   label,
-  autofocus,
   onChange,
   onBlur,
   onFocus,
@@ -34,14 +33,11 @@ export const RangeWidget: FC<WidgetProps> = ({
 
   return (
     <Slider
-      css={{ my: '$3' }}
       value={internalValue}
       disabled={disabled || readonly}
       onValueChange={_onChange}
       onBlur={_onBlur}
       onFocus={_onFocus}
-      // eslint-disable-next-line jsx-a11y/no-autofocus
-      autoFocus={autofocus}
       {...sliderProps}
     />
   )

@@ -1,38 +1,41 @@
 import {
   Box,
-  Column,
+  FormControl,
+  FormControlHelp,
   Input,
   Label,
+  LabelOptional,
   Monospace,
   Row,
-  Text,
 } from '@committed/components'
 import { FieldTemplateProps, utils } from '@rjsf/core'
 import { JSONSchema7 } from 'json-schema'
-import React from 'react'
+import React, { useMemo } from 'react'
 import { IconButton, REQUIRED_FIELD_SYMBOL } from '../../../utils'
 
 const { ADDITIONAL_PROPERTY_FLAG } = utils
 
-const FieldLabel: React.FC<{ label?: string; required?: boolean; id: string }> =
-  ({ label, required, id }) => {
-    if (!label) {
-      return null
-    }
-    return (
-      <Label htmlFor={id}>
-        {label}
-        {required && (
-          <Monospace
-            size={-1}
-            css={{ color: '$error', verticalAlign: 'super' }}
-          >
-            {REQUIRED_FIELD_SYMBOL}
-          </Monospace>
-        )}
-      </Label>
-    )
+const FieldLabel: React.FC<{
+  id: string
+  label?: string
+  required?: boolean
+  optional?: boolean
+}> = ({ label, required = false, optional = false, id }) => {
+  if (!label) {
+    return null
   }
+  return (
+    <Label htmlFor={id}>
+      {label}
+      {optional && <LabelOptional />}
+      {required && (
+        <Monospace size={-1} css={{ color: '$error', verticalAlign: 'super' }}>
+          {REQUIRED_FIELD_SYMBOL}
+        </Monospace>
+      )}
+    </Label>
+  )
+}
 
 type WrapIfAdditionalProps = {
   children: React.ReactElement
@@ -72,30 +75,27 @@ const WrapIfAdditional = ({
   }: React.FocusEvent<HTMLInputElement>) => onKeyChange(value)
 
   return (
-    <>
-      <Row css={{ gap: '$3', alignItems: 'flex-end' }} key={`${id}-key`}>
-        <Column css={{ flex: '1', gap: '$1', mb: '$4' }}>
-          <Label htmlFor={id}>{keyLabel}</Label>
-          <Input
-            id={`${id}-key`}
-            defaultValue={label}
-            disabled={disabled || readonly}
-            name={`${id}-key`}
-            onBlur={!readonly ? handleBlur : undefined}
-            type="text"
-          />
-        </Column>
-        <Box css={{ flex: '1' }}>{children}</Box>
-        <Box css={{ mb: '$5' }}>
-          <IconButton
-            icon="remove"
-            tabIndex={-1}
-            disabled={disabled || readonly}
-            onClick={onDropPropertyClick(label)}
-          />
-        </Box>
-      </Row>
-    </>
+    <Row gap css={{ alignItems: 'flex-end' }} key={`${id}-key`}>
+      <Box variant="grow">
+        <Input
+          id={`${id}-key`}
+          label={keyLabel}
+          defaultValue={label}
+          disabled={disabled || readonly}
+          name={`${id}-key`}
+          onBlur={!readonly ? handleBlur : undefined}
+          type="text"
+        />
+      </Box>
+      <Box variant="grow">{children}</Box>
+      <IconButton
+        icon="remove"
+        tabIndex={-1}
+        disabled={disabled || readonly}
+        onClick={onDropPropertyClick(label)}
+        aria-label="Remove"
+      />
+    </Row>
   )
 }
 
@@ -104,9 +104,9 @@ export const FieldTemplate: React.FC<FieldTemplateProps> = ({
   children,
   classNames,
   disabled,
-  label,
-  description,
   displayLabel,
+  description,
+  label,
   onDropPropertyClick,
   onKeyChange,
   readonly,
@@ -114,7 +114,21 @@ export const FieldTemplate: React.FC<FieldTemplateProps> = ({
   rawErrors = [],
   rawHelp,
   schema,
+  formContext,
 }) => {
+  const { showRequired, showOptional } = useMemo(() => {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+    if (formContext?.showRequired === true) {
+      return { showRequired: required, showOptional: false }
+    }
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+    if (formContext?.showOptional === false) {
+      return { showRequired: false, showOptional: false }
+    } else {
+      return { showRequired: false, showOptional: !required }
+    }
+  }, [formContext, required])
+
   return (
     <WrapIfAdditional
       classNames={classNames}
@@ -127,37 +141,24 @@ export const FieldTemplate: React.FC<FieldTemplateProps> = ({
       required={required}
       schema={schema}
     >
-      <Column css={{ gap: '$1', mb: '$4' }}>
+      <FormControl>
         {displayLabel && (
           <Row css={{ gap: '$2' }}>
-            <FieldLabel id={id} label={label} required={required} />
+            <FieldLabel
+              id={id}
+              label={label}
+              required={showRequired}
+              optional={showOptional}
+            />
             {description}
           </Row>
         )}
-
         {children}
-        {rawErrors.length > 0 && (
-          <Column css={{ gap: '$1' }}>
-            {rawErrors.map((error, i: number) => {
-              return (
-                <Text
-                  css={{ color: '$error' }}
-                  key={`error-${i}`}
-                  id={id}
-                  size={-1}
-                >
-                  {error}
-                </Text>
-              )
-            })}
-          </Column>
-        )}
-        {rawHelp && (
-          <Text id={id} size={-1}>
-            {rawHelp}
-          </Text>
-        )}
-      </Column>
+        <FormControlHelp
+          defaultText={rawHelp ?? ''}
+          errorText={rawErrors?.join(', ')}
+        />
+      </FormControl>
     </WrapIfAdditional>
   )
 }

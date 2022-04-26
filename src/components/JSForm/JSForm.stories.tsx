@@ -1,7 +1,7 @@
 import { Type } from '@sinclair/typebox'
 import { Meta } from '@storybook/react'
 import { JSForm } from '.'
-import { DefaultStory, allArgTypes } from '../../utils/utils.stories'
+import { allArgTypes, DefaultStory } from '../../utils/utils.stories'
 
 export default {
   title: 'JSForm',
@@ -12,7 +12,7 @@ export default {
 export const Default = DefaultStory.bind({})
 Default.args = {
   schema: Type.Object({
-    name: Type.String({ name: 'Name', description: 'description' }),
+    name: Type.String({ title: 'Name', description: 'description' }),
   }),
 }
 
@@ -20,11 +20,11 @@ export const Simple = DefaultStory.bind({})
 Simple.args = {
   schema: Type.Object({
     firstName: Type.String({
-      name: 'First Name',
+      title: 'First Name',
       description: 'Your first, or given, name.',
     }),
     familyName: Type.String({
-      name: 'Family Name',
+      title: 'Family Name',
       description: 'Your family, or second, name.',
     }),
   }),
