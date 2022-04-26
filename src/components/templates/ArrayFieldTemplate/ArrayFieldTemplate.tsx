@@ -86,6 +86,7 @@ const DefaultArrayItem: React.FC<
               icon="arrow-up"
               disabled={disabled || readonly || !hasMoveUp}
               onClick={onReorderClick(index, index - 1)}
+              aria-label="Move up"
             />
           )}
 
@@ -94,6 +95,7 @@ const DefaultArrayItem: React.FC<
               icon="arrow-down"
               disabled={disabled || readonly || !hasMoveDown}
               onClick={onReorderClick(index, index + 1)}
+              aria-label="Move down"
             />
           )}
 
@@ -103,6 +105,7 @@ const DefaultArrayItem: React.FC<
               destructive
               disabled={disabled || readonly}
               onClick={onDropIndexClick(index)}
+              aria-label="Remove"
             />
           )}
         </Row>
@@ -158,6 +161,7 @@ const DefaultFixedArrayFieldTemplate: React.FC<ArrayFieldTemplateProps> = ({
             icon="plus"
             onClick={onAddClick}
             disabled={disabled || readonly}
+            aria-label="Add"
           />
         )}
       </Fieldset>
@@ -212,6 +216,7 @@ const DefaultNormalArrayFieldTemplate: React.FC<ArrayFieldTemplateProps> = ({
             icon="plus"
             onClick={onAddClick}
             disabled={disabled || readonly}
+            aria-label="Add"
           />
         </Row>
       )}

@@ -93,6 +93,7 @@ const WrapIfAdditional = ({
         tabIndex={-1}
         disabled={disabled || readonly}
         onClick={onDropPropertyClick(label)}
+        aria-label="Remove"
       />
     </Row>
   )

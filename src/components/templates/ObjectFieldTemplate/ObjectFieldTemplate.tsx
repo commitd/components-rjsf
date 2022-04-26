@@ -56,6 +56,7 @@ export const ObjectFieldTemplate: React.FC<ObjectFieldTemplateProps> = ({
             icon="plus"
             onClick={onAddClick(schema)}
             disabled={disabled || readonly}
+            aria-label="Add"
           />
         </Row>
       )}
