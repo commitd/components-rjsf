@@ -1,11 +1,11 @@
 /**
- * Import setupTests for your unit tests and you can use `renderLight` and `renderDark` to render elements wrapped in a ThemeProvider.
+ * Import setupTests for your unit tests and you can use `renderLight` and `renderDark` to render elements wrapped in a ComponentsProvider.
  * To render without a theme provider use `renderPlain`.
  *
  * N.B. This adds a simple custom id generator so ids match between snapshots.
  *
  */
-import { ThemeProvider } from '@committed/components'
+import { ComponentsProvider } from '@committed/components'
 import '@testing-library/jest-dom'
 import '@testing-library/jest-dom/extend-expect'
 import { render, RenderOptions, RenderResult } from '@testing-library/react'
@@ -18,11 +18,13 @@ import ResizeObserver from 'resize-observer-polyfill'
 global.ResizeObserver = ResizeObserver
 
 const LightTheme: React.FC = ({ children }) => (
-  <ThemeProvider choice="light">{children}</ThemeProvider>
+  <ComponentsProvider theme={{ choice: 'light' }}>
+    {children}
+  </ComponentsProvider>
 )
 
 const DarkTheme: React.FC = ({ children }) => (
-  <ThemeProvider choice="dark">{children}</ThemeProvider>
+  <ComponentsProvider theme={{ choice: 'dark' }}>{children}</ComponentsProvider>
 )
 
 export const renderPlain = render
