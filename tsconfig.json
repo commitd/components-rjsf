@@ -1,9 +1,8 @@
 {
   "compilerOptions": {
     "baseUrl": "src",
-    "target": "ES2018",
-    "module": "ESNext",
-    "lib": ["ESNext", "DOM"],
+    "target": "es2020",
+    "lib": ["es2020", "dom"],
     "moduleResolution": "node",
     "esModuleInterop": true,
     "allowJs": true,

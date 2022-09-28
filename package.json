@@ -6,8 +6,8 @@
   "license": "MIT",
   "private": false,
   "repository": "git://github.com/commitd/components-rjsf.git",
-  "main": "dist/committed-components-rjsf.cjs.js",
-  "module": "dist/committed-components-rjsf.esm.js",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.esm.js",
   "types": "dist/index.d.ts",
   "sideEffects": false,
   "publishConfig": {
@@ -34,7 +34,7 @@
     "build-storybook": "build-storybook",
     "format": "prettier --write 'src/**/{*.js,*.ts,*.tsx,*.json,*.md,*.mdx}'",
     "format:check": "prettier --check '**/{src,test,stories}/**/{*.js,*.ts,*.tsx,*.json,*.md,*.mdx}'",
-    "deploy-storybook": "storybook-to-ghpages",
+    "deploy-storybook": "storybook-to-ghpages -s .storybook/static",
     "prepare": "husky install",
     "semantic-release": "semantic-release"
   },
@@ -47,11 +47,11 @@
   },
   "size-limit": [
     {
-      "path": "dist/committed-components-rjsf.cjs.production.js",
+      "path": "dist/index.cjs.js",
       "limit": "850 KB"
     },
     {
-      "path": "dist/committed-components-rjsf.esm.js",
+      "path": "dist/index.esm.js",
       "limit": "200 KB"
     }
   ],
@@ -119,10 +119,10 @@
     "storybook-dark-mode": "^1.0.9",
     "ts-jest": "^27.1.4",
     "tsconfig-paths-webpack-plugin": "^3.5.2",
-    "typescript": "4.2.2"
+    "typescript": "4.7.4"
   },
   "dependencies": {
-    "@committed/components": "^7.0.2",
+    "@committed/components": "^8.1.3",
     "@rjsf/core": "^4.1.1"
   }
 }

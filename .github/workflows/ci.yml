@@ -146,6 +146,6 @@ jobs:
           npm install
       - name: Publish Storybook
         if: github.ref == 'refs/heads/main'
-        run: npm run deploy-storybook -- --ci
+        run: npm run deploy-storybook -- --ci -s .storybook/static
         env:
           GH_TOKEN: commitd-bot:${{ secrets.SEMANTIC_RELEASE_GITHUB_TOKEN }}
