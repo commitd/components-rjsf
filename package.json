@@ -48,11 +48,11 @@
   "size-limit": [
     {
       "path": "dist/index.cjs.js",
-      "limit": "850 KB"
+      "limit": "300 KB"
     },
     {
       "path": "dist/index.esm.js",
-      "limit": "200 KB"
+      "limit": "300 KB"
     }
   ],
   "lint-staged": {
@@ -103,6 +103,7 @@
     "commitizen": "^4.2.4",
     "cz-conventional-changelog": "^3.3.0",
     "esbuild": "^0.14.37",
+    "esbuild-node-externals": "^1.6.0",
     "eslint": "^7.29.0",
     "eslint-config-prettier": "^8.1.0",
     "eslint-import-resolver-typescript": "^2.4.0",
