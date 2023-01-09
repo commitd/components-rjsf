@@ -1,5 +1,5 @@
 const { build } = require('esbuild')
-const { peerDependencies } = require('./package.json')
+const { nodeExternalsPlugin } = require('esbuild-node-externals')
 
 const entryFile = 'src/index.ts'
 const outFolder = 'dist'
@@ -7,11 +7,11 @@ const outFolder = 'dist'
 const shared = {
   bundle: true,
   entryPoints: [entryFile],
-  external: Object.keys(peerDependencies),
   logLevel: 'info',
   minify: true,
   sourcemap: true,
-  target: ['esnext', 'node12.22.0'],
+  target: ['esnext'],
+  plugins: [nodeExternalsPlugin()],
 }
 
 build({
