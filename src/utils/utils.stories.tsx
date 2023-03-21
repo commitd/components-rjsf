@@ -9,7 +9,7 @@ import { FormProps } from '@rjsf/core'
 import { Type } from '@sinclair/typebox'
 import { Story } from '@storybook/react'
 import { JSONSchema7 } from 'json-schema'
-import React from 'react'
+import React, { ReactNode } from 'react'
 import { JSForm } from '../components/JSForm'
 
 export const argTypes = {
@@ -315,12 +315,14 @@ Note: If there are fields in the \`formData\` that are not represented in the sc
 
 type DefaultStoryProps = Omit<FormProps<any>, 'schema'> & {
   schema?: JSONSchema7
+  buttons?: ReactNode
 }
 
 export const DefaultStory: Story<DefaultStoryProps> = ({
   schema = Type.Object({
     name: Type.String({ title: 'Name', description: 'description' }),
   }),
+  buttons,
   children,
   ...args
 }: DefaultStoryProps) => {
@@ -336,7 +338,9 @@ export const DefaultStory: Story<DefaultStoryProps> = ({
           setTrue()
         }}
         {...args}
-      />
+      >
+        {buttons}
+      </JSForm>
       {children}
       <Dialog open={isOpen} onOpenChange={setFalse}>
         <DialogContent>
