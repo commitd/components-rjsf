@@ -1,5 +1,14 @@
+import {
+  Dialog,
+  DialogContent,
+  DialogTitle,
+  FormButton,
+  Monospace,
+} from '@committed/components'
+import { useBoolean } from '@committed/hooks'
 import { Type } from '@sinclair/typebox'
-import { Meta } from '@storybook/react'
+import { Meta, Story } from '@storybook/react'
+import React, { useState } from 'react'
 import { JSForm } from '.'
 import { allArgTypes, DefaultStory } from '../../utils/utils.stories'
 
@@ -76,5 +85,55 @@ Nested.args = {
         },
       },
     },
+  },
+}
+
+export const SubmitRight = DefaultStory.bind({})
+SubmitRight.args = {
+  schema: Type.Object({
+    name: Type.String({ title: 'Name', description: 'description' }),
+  }),
+  buttons: <FormButton style={{ alignSelf: 'flex-end' }} />,
+}
+
+type TSDemoFormData = {
+  name: string
+}
+
+export const TSDemo: Story = () => {
+  const [isOpen, { setTrue, setFalse }] = useBoolean(false)
+  const [formData, setFormData] = useState<TSDemoFormData>()
+
+  return (
+    <div>
+      <JSForm<TSDemoFormData>
+        schema={Type.Object({
+          name: Type.String({ title: 'Name', description: 'description' }),
+        })}
+        onSubmit={(e) => {
+          setFormData(e.formData)
+          setTrue()
+        }}
+      />
+      <Dialog open={isOpen} onOpenChange={setFalse}>
+        <DialogContent>
+          <DialogTitle>Form Data</DialogTitle>
+          <Monospace css={{ mt: '$3' }}>
+            {JSON.stringify(formData, null, 2)}
+          </Monospace>
+        </DialogContent>
+      </Dialog>
+    </div>
+  )
+}
+TSDemo.parameters = {
+  docs: {
+    storyDescription: `Use the \`generateForm\` function with generics to get a correctly typed form: 
+\`\`\`
+type TSDemoFormData = {
+  name: string
+}
+const TSDemoForm = generateForm<TSDemoFormData>()
+\`\`\``,
   },
 }
