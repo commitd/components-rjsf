@@ -1,5 +1,13 @@
 import { FormButton, styled } from '@committed/components'
-import { FormProps, ThemeProps, utils, withTheme } from '@rjsf/core'
+import {
+  ErrorSchema,
+  FormProps,
+  IChangeEvent,
+  ISubmitEvent,
+  ThemeProps,
+  utils,
+  withTheme,
+} from '@rjsf/core'
 import React, { ComponentType } from 'react'
 import { Fields } from '../fields'
 import {
@@ -39,13 +47,24 @@ export function generateForm<T>(): ComponentType<FormProps<T>> {
   })
 }
 
+export type JSFormSubmit<T> = ISubmitEvent<T>
+export type JSFormChange<T> = IChangeEvent<T>
+export type JSFormErrorSchema = ErrorSchema
+
+export type JSFormProps<T> = FormProps<T> & {
+  Form?: ComponentType<FormProps<T>>
+  onSubmit?: (
+    e: JSFormSubmit<T>,
+    nativeEvent: React.FormEvent<HTMLFormElement>
+  ) => void
+  onChange?: (e: JSFormChange<T>, es?: JSFormErrorSchema) => void
+}
+
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function JSForm<T = any>({
   Form = generateForm<T>(),
   children = <DefaultChildren />,
   ...props
-}: FormProps<T> & {
-  Form?: ComponentType<FormProps<T>>
-}) {
+}: JSFormProps<T>) {
   return <Form {...props}>{children}</Form>
 }

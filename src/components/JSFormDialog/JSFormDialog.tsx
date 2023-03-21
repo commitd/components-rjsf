@@ -6,24 +6,14 @@ import {
   DialogTrigger,
   Inline,
 } from '@committed/components'
-import { FormProps, ISubmitEvent } from '@rjsf/core'
-import React, {
-  ComponentProps,
-  ComponentType,
-  FormEvent,
-  ReactNode,
-  useCallback,
-  useState,
-} from 'react'
-import { generateForm } from '../JSForm'
+import React, { ComponentProps, FormEvent, useCallback, useState } from 'react'
+import { generateForm, JSFormProps, JSFormSubmit } from '../JSForm'
 
-export type JSFormDialogProps<T> = FormProps<T> & {
-  Form?: ComponentType<FormProps<T>>
+export type JSFormDialogProps<T> = JSFormProps<T> & {
   dialog?: ComponentProps<typeof Dialog>
   css?: CSS
   cancelText?: string
   submitText?: string
-  children?: ReactNode
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -40,7 +30,7 @@ export function JSFormDialog<T = any>({
   const [open, setOpen] = useState(false)
 
   const handleSubmit = useCallback(
-    (e: ISubmitEvent<T>, n: FormEvent<HTMLFormElement>) => {
+    (e: JSFormSubmit<T>, n: FormEvent<HTMLFormElement>) => {
       onSubmit && onSubmit(e, n)
       setOpen(false)
     },
