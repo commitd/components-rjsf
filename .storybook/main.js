@@ -35,4 +35,7 @@ module.exports = {
   typescript: {
     check: false,
   },
+  core: {
+    builder: 'webpack5',
+  },
 }
