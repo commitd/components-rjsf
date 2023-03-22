@@ -17,6 +17,7 @@ import {
   ObjectFieldTemplate,
 } from '../templates'
 import { Widgets } from '../widgets'
+
 const { getDefaultRegistry } = utils
 const { fields, widgets } = getDefaultRegistry()
 

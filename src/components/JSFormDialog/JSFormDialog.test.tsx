@@ -6,9 +6,11 @@ import { Default } from './JSFormDialog.stories'
 
 it('renders and can submit', () => {
   const onSubmit = jest.fn()
+  const setOpen = jest.fn()
   const { asFragment } = renderLight(
     <Default
-      dialog={{ open: true }}
+      open={true}
+      onOpenChange={setOpen}
       schema={Type.String()}
       onSubmit={onSubmit}
     />
@@ -22,9 +24,11 @@ it('renders and can submit', () => {
 
 it('renders and can cancel', () => {
   const onSubmit = jest.fn()
+  const setOpen = jest.fn()
   renderLight(
     <Default
-      dialog={{ open: true }}
+      open={true}
+      onOpenChange={setOpen}
       schema={Type.String()}
       onSubmit={onSubmit}
     />
