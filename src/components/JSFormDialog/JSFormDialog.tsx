@@ -6,19 +6,23 @@ import {
   DialogTrigger,
   Inline,
 } from '@committed/components'
-import React, { ComponentProps, FormEvent, useCallback, useState } from 'react'
+import { useControllableState } from '@committed/hooks'
+import React, { ComponentProps, FormEvent, useCallback } from 'react'
 import { generateForm, JSFormProps, JSFormSubmit } from '../JSForm'
 
-export type JSFormDialogProps<T> = JSFormProps<T> & {
-  dialog?: ComponentProps<typeof Dialog>
-  css?: CSS
-  cancelText?: string
-  submitText?: string
-}
+export type JSFormDialogProps<T> = JSFormProps<T> &
+  ComponentProps<typeof Dialog> & {
+    css?: CSS
+    cancelText?: string
+    submitText?: string
+  }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function JSFormDialog<T = any>({
-  dialog,
+  open: controlledOpen,
+  onOpenChange: controlledOnOpenChange,
+  modal = true,
+  defaultOpen = false,
   css,
   Form = generateForm<T>(),
   cancelText = 'Cancel',
@@ -27,7 +31,11 @@ export function JSFormDialog<T = any>({
   onSubmit,
   ...props
 }: JSFormDialogProps<T>) {
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useControllableState(
+    controlledOpen,
+    controlledOnOpenChange,
+    defaultOpen
+  )
 
   const handleSubmit = useCallback(
     (e: JSFormSubmit<T>, n: FormEvent<HTMLFormElement>) => {
@@ -42,7 +50,7 @@ export function JSFormDialog<T = any>({
   const handleClose = useCallback(() => setOpen(false), [setOpen])
 
   return (
-    <Dialog modal={true} open={open} {...dialog}>
+    <Dialog modal={modal} open={open} onOpenChange={setOpen}>
       <DialogTrigger onClick={handleOpen}>{children}</DialogTrigger>
       <DialogContent css={css as CSS} defaultClose={false}>
         <Form {...props} onSubmit={handleSubmit}>

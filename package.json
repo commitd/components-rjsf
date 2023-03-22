@@ -40,6 +40,7 @@
   },
   "peerDependencies": {
     "@committed/components": "^8.0.0",
+    "@committed/hooks": "^0.10.4",
     "react": "^16.8.0 || ^17.0.0"
   },
   "prettier": {
@@ -83,9 +84,10 @@
     ]
   },
   "devDependencies": {
-    "@committed/components": "^8.2.1",
     "@commitlint/cli": "^16.2.3",
     "@commitlint/config-conventional": "^16.2.1",
+    "@committed/components": "^8.2.1",
+    "@committed/hooks": "^0.10.4",
     "@fontsource/dosis": "^4.5.7",
     "@fontsource/inter": "^4.5.7",
     "@sinclair/typebox": "0.22.1",

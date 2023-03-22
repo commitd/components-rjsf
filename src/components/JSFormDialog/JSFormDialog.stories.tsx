@@ -1,5 +1,6 @@
 import {
   Button,
+  Checkbox,
   Dialog,
   DialogContent,
   DialogTitle,
@@ -10,7 +11,7 @@ import { ISubmitEvent } from '@rjsf/core'
 import { Type } from '@sinclair/typebox'
 import { Meta, Story } from '@storybook/react'
 import { JSONSchema7 } from 'json-schema'
-import React from 'react'
+import React, { useState } from 'react'
 import { JSFormDialog, JSFormDialogProps } from '.'
 
 export default {
@@ -130,12 +131,48 @@ type MyFormData = {
 
 export const Typed: Story = () => {
   const handleSubmit = (e: ISubmitEvent<MyFormData>) => {
-    alert(e.formData)
+    alert(JSON.stringify(e.formData, null, 2))
   }
 
   return (
     <div>
       <JSFormDialog<MyFormData>
+        schema={{
+          title: 'name',
+          type: 'object',
+          required: ['first', 'second'],
+          properties: {
+            first: {
+              type: 'string',
+              title: 'First name',
+            },
+            second: {
+              type: 'string',
+              title: 'Surname',
+            },
+          },
+        }}
+        onSubmit={handleSubmit}
+      >
+        <Button>Open</Button>
+      </JSFormDialog>
+    </div>
+  )
+}
+
+export const Controlled: Story = () => {
+  const [open, setOpen] = useState(false)
+
+  const handleSubmit = (e: ISubmitEvent<MyFormData>) => {
+    alert(JSON.stringify(e.formData, null, 2))
+  }
+
+  return (
+    <div>
+      <Checkbox label="Open" checked={open} onCheckedChange={setOpen} />
+      <JSFormDialog<MyFormData>
+        open={open}
+        onOpenChange={setOpen}
         schema={{
           title: 'name',
           type: 'object',
@@ -152,9 +189,45 @@ export const Typed: Story = () => {
           },
         }}
         onSubmit={handleSubmit}
-      >
-        <Button>Open</Button>
-      </JSFormDialog>
+      />
+    </div>
+  )
+}
+
+export const SetControlled: Story = () => {
+  const [open, setOpen] = useState(false)
+
+  const handleSubmit = (e: ISubmitEvent<MyFormData>) => {
+    alert(JSON.stringify(e.formData, null, 2))
+  }
+
+  return (
+    <div>
+      <Checkbox
+        label="Open"
+        checked={open}
+        onCheckedChange={(value: boolean) => setOpen(value)}
+      />
+      <JSFormDialog<MyFormData>
+        open={open}
+        onOpenChange={setOpen}
+        schema={{
+          title: 'name',
+          type: 'object',
+          required: ['first', 'second'],
+          properties: {
+            first: {
+              type: 'string',
+              title: 'Firstname',
+            },
+            second: {
+              type: 'string',
+              title: 'Surname',
+            },
+          },
+        }}
+        onSubmit={handleSubmit}
+      />
     </div>
   )
 }
