@@ -60,7 +60,10 @@ export const TextWidget: FC<TextWidgetProps> = ({
 
   const inputType = getInputType(type ?? schema.type ?? 'string')
 
-  const rangeProps = inputType === 'number' ? { ...rangeSpec(schema) } : {}
+  const rangeProps =
+    inputType === 'number'
+      ? { step: schema.type === 'integer' ? '1' : 'any', ...rangeSpec(schema) }
+      : {}
 
   return (
     <Input
